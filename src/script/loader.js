@@ -1,5 +1,3 @@
-import imagesLoaded from 'imagesloaded';
-
 // Ensure the page is scrolled to the top before any animations or loaders
 window.addEventListener('load', () => {
     window.scrollTo(0, 0);
@@ -30,6 +28,23 @@ function isVisitWithinLast10Minutes() {
     return currentTime - lastVisitTime <= tenMinutesInMilliseconds;
 }
 
+// Function to check if all images in the body have loaded
+function loadImages() {
+    const images = document.querySelectorAll('img');
+    const promises = Array.from(images).map(img => {
+        return new Promise((resolve, reject) => {
+            if (img.complete && img.naturalHeight !== 0) {
+                resolve();
+            } else {
+                img.onload = resolve;
+                img.onerror = reject;
+            }
+        });
+    });
+
+    return Promise.all(promises);
+}
+
 // Wait for the DOM to fully load before applying any changes
 document.addEventListener('DOMContentLoaded', () => {
     const isRecentVisit = isVisitWithinLast10Minutes();
@@ -43,10 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const content = document.querySelector('body');
 
-    // Apply imagesLoaded on all images in the body
-    const imgLoad = imagesLoaded(content);
-
-    imgLoad.on('done', instance => {
+    // Wait for images to load
+    loadImages().then(() => {
         // Block scrolling while animating
         document.body.style.overflow = 'hidden';
 
@@ -66,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
         logo.textContent = '';
 
         letters.forEach((letter) => {
-            logo.innerHTML += `<span class="letter">${letter}</span>`; // Corrected string template
+            logo.innerHTML += `<span class="letter">${letter}</span>`;
         });
 
         gsap.set('.letter', {display: 'inline-block'});
@@ -86,13 +99,11 @@ document.addEventListener('DOMContentLoaded', () => {
         tl.fromTo('.text3 span', {x: "100%"}, {x: "0", ease: "power1.out", duration: 1}, '<50%');
         tl.fromTo('.text4 span', {y: "120%"}, {y: "0", ease: "power1.out", duration: 1}, '<50%');
         tl.fromTo('.work_title-wrap', {opacity: 0}, {opacity: 1}, '<50%');
-        tl.fromTo('.work_image', {opacity: 1, duration: 2, ease: "power1.out"}); // Corrected missing selector dot for .work_image
+        tl.fromTo('.work_image', {opacity: 1, duration: 2, ease: "power1.out"});
 
-        // Error Handling for Images Loading Failure
-        imgLoad.on('fail', function(instance) {
-            console.log('Some images failed to load.');
-            // Implement any fallback logic here, such as removing the loader immediately
-            gsap.set('.loader', {scaleY: 0}); // Fallback to remove loader
-        });
+    }).catch((err) => {
+        console.log('Some images failed to load.', err);
+        // Fallback to remove loader
+        gsap.set('.loader', {scaleY: 0});
     });
 });
