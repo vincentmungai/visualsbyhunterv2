@@ -1,14 +1,14 @@
 ---
 import "../styles/index.css";
-import FooterLayout from "../layouts/FooterLayout.astro";
+import FooterLayout from "../components/FooterComponent.astro";
 import "../styles/WorkGrid.css";
 import "../styles/page-load.css";
 const allWorkCards = await Astro.glob("../content/WorkGrid/*.md");
 import PricingCards from "../components/PricingCards.astro";
-import NavBar from "../layouts/NavBar.astro";
+import NavBar from "../components/NavBar.astro";
 import ThemeToggle from "../layouts/ThemeToggle.astro";
-import BrandTag from "../layouts/BrandTag.astro";
-import PageLoader from "../layouts/PageLoader.astro";
+import BrandTag from "../components/BrandTag.astro";
+import PageLoader from "../components/PageLoader.astro";
 import { Image } from "astro:assets";
 ---
 
@@ -42,7 +42,7 @@ import { Image } from "astro:assets";
   </head>
 
   <body>
-  <!--<PageLoader/>-->
+  <PageLoader/>
     <BrandTag />
     <ThemeToggle />
     <NavBar/>

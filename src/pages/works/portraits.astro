@@ -1,23 +1,42 @@
 ---
 import "../../styles/lightbox.css";
-import FooterLayout from "../../layouts/FooterLayout.astro";
-import BrandTag from "../../layouts/BrandTag.astro";
-import NavBar from "../../layouts/NavBar.astro";
+import FooterLayout from "../../components/FooterComponent.astro";
+import BrandTag from "../../components/BrandTag.astro";
+import NavBar from "../../components/NavBar.astro";
 import ThemeToggle from "../../layouts/ThemeToggle.astro";
 import "../../styles/page-load.css";
 
-// Generate the project items for 30 images
-const projectItems = Array.from({ length: 30 }, (_, i) => {
-    const imageNumber = i + 1; // Numbers from 1 to 30
-    const imageSrc = `https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/portraits/${imageNumber}.webp`;
-    const modalId = `dsc082${imageNumber}`;
+// Helper function to check if an image exists
+async function imageExists(url) {
+    try {
+        const response = await fetch(url, { method: 'HEAD' });
+        return response.ok; // If the response is ok (status 200), the image exists
+    } catch (error) {
+        return false; // If there's an error, consider the image as not existing
+    }
+}
 
-    return {
-        imageNumber,
-        imageSrc,
-        modalId
-    };
-});
+// Generate the project items for images that exist
+const projectItems = await Promise.all(
+    Array.from({ length: 30 }, async (_, i) => {
+        const imageNumber = i + 1; // Numbers from 1 to 30
+        const imageSrc = `https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/portraits/${imageNumber}.webp`;
+        const modalId = `image${imageNumber}`;
+
+        // Check if the image exists
+        const exists = await imageExists(imageSrc);
+
+        if (exists) {
+            return {
+                imageNumber,
+                imageSrc,
+                modalId
+            };
+        } else {
+            return null; // Return null if the image doesn't exist
+        }
+    })
+).then(results => results.filter(item => item !== null)); // Filter out null results
 ---
 
 <!doctype html>
