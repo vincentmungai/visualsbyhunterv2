@@ -122,8 +122,12 @@ const projectItems = Array.from({ length: 30 }, (_, i) => {
         // Open modal
         openModalButtons.forEach(button => {
             button.addEventListener('click', () => {
-                const modal = document.querySelector(button.dataset.modalTarget);
-                openModal(modal);
+                // Use type assertion to access the dataset property safely
+                const modalTarget = (button as HTMLElement).getAttribute('data-modal-target');
+                if (modalTarget) {
+                    const modal = document.querySelector(modalTarget);
+                    openModal(modal);
+                }
             });
         });
 
