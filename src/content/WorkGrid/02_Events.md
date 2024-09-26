@@ -2,6 +2,6 @@
 category: Events
 description: Relive unforgettable moments from special occasions.
 size:  tall
-image: "/assets/hero/events.webp"
+image: "https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/home_works/events.webp"
 route: /works/events   
 ---
