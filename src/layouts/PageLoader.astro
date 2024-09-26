@@ -1,0 +1,64 @@
+---
+
+---
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+      defer></script>
+      <style>
+        .loader {
+          height: 100vh;
+          width: 100%;
+          position: fixed;
+          z-index: 999;
+          top: 0;
+        }
+        .blinder-container {
+          position: absolute;
+          top: 0;
+          width: 100%;
+          height: 100vh;
+          display: flex;
+        }
+        .blinder {
+          background-color: hsl(50, 6.0%, 10.0%);
+          height: 100vh;
+          flex: 1;
+          transform-origin: top;
+        }
+        .brand-logo {
+          display: block;
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+          font-size:  2rem;
+          font-weight: bolder;
+          color:  hsl(59, 6.5%, 95.1%);;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%,-50%);
+        }
+        h1 {
+          overflow: hidden;
+          clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+      </style>
+
+ 
+    <div class="loader">
+      <div class="blinder-container">
+        <div class="blinder"></div>
+        <div class="blinder"></div>
+        <div class="blinder"></div>
+        <div class="blinder"></div>
+        <div class="blinder"></div>
+        <div class="logo-container">
+          <h1 class="brand-logo logo">HUNTER.</h1> 
+        </div>
+         
+        
+      </div>
+    </div>
+    
+    <script src="/src//script/loader.js">
+    
+    </script>
+ 

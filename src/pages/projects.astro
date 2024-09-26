@@ -1,0 +1,116 @@
+---
+import "../styles/projects.css";
+import FooterLayout from "../layouts/FooterLayout.astro";
+import BrandTag from "../layouts/BrandTag.astro";
+import NavBar from "../layouts/NavBar.astro";
+import ThemeToggle from "../layouts/ThemeToggle.astro";
+import PageLoader from "../layouts/PageLoader.astro";
+const allProjectCards = await Astro.glob("../content/ProjectCards/*.md");
+
+function slugify(text) {
+    return text.toString().toLowerCase()
+        .replace(/\s+/g, '-')           // Replace spaces with -
+        .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+        .replace(/\-\-+/g, '-')         // Replace multiple -s with single -
+        .replace(/^-+/, '')             // Trim - from start of text
+        .replace(/-+$/, '');            // Trim - from end of text
+}
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta
+            name="description"
+            content="Explore Hunter's stunning world of photography, showcasing the beauty of Nairobi, Kenya, and beyond. Through his lens, experience the vibrant landscapes, unforgettable wildlife, and compelling moments captured meticulously by this acclaimed local photographer."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Projects</title>
+    <link rel="icon"
+          type="image/svg+xml"
+          href="/assets/icons/hunter-logo.svg">
+    <link rel="manifest" href="/manifest.json">
+</head>
+<body>
+<!--<Header />-->
+<!--<PageLoader/>-->
+<ThemeToggle/>
+<BrandTag/>
+<NavBar/>
+<main>
+    <div class="title-wrapper">
+        <h1>PROJECTS</h1>
+    </div>
+    <div class="work-projects-container">
+
+
+        {
+            allProjectCards.map((content, index) => {
+                let titleSlug = slugify(content.frontmatter.title); // slugify function
+
+                return (
+                        <div class="project-item">
+
+                            <div class="project-modal" data-modal-target={`#${titleSlug}`}>
+                                <img src={content.frontmatter.thumbnail}/>
+                                <div class="projects-description-wrapper">
+                                    <p class="project-name">{content.frontmatter.title}</p>
+                                    <div class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                             xmlns:xlink="http://www.w3.org/1999/xlink"
+                                             x="0px" y="0px" width="100%" height="100%" viewBox="0 0 16 16">
+                                            <g transform="translate(0, 0)">
+                                                <line fill="none" stroke="#ffffff" stroke-linecap="round"
+                                                      stroke-linejoin="round" stroke-miterlimit="10" x1="14.5"
+                                                      y1="1.5" x2="9.5" y2="6.5" data-color="color-2"/>
+                                                <line fill="none" stroke="#ffffff" stroke-linecap="round"
+                                                      stroke-linejoin="round" stroke-miterlimit="10" x1="6.5"
+                                                      y1="9.5" x2="1.5" y2="14.5" data-color="color-2"/>
+                                                <polyline fill="none" stroke="#ffffff" stroke-linecap="round"
+                                                          stroke-linejoin="round" stroke-miterlimit="10"
+                                                          points="8.5,1.5 14.5,1.5 14.5,7.5 "/>
+                                                <polyline fill="none" stroke="#ffffff" stroke-linecap="round"
+                                                          stroke-linejoin="round" stroke-miterlimit="10"
+                                                          points="1.5,8.5 1.5,14.5 7.5,14.5 "/>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal" id={titleSlug}>
+                                <div class="modal-header">
+                                    <div class="title"></div>
+                                    <button data-close-button class="close-button">&times;</button>
+                                </div>
+
+                                <div class="article-header">{content.frontmatter.article}</div>
+                                <div class="project-company">John Doe, Jane Doe</div>
+
+                                <div class="modal-body">
+                                    <div class="project-grid">
+                                        <div class="content_image-wrapper">
+                                            <img alt="project image" src={content.frontmatter.articleImage}/>
+                                        </div>
+                                        <div class="article-body">
+                                            <p set:html={content.compiledContent()}/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div id="overlay"></div>
+                        </div>
+                );
+            })
+        }
+    </div>
+
+
+</main>
+<FooterLayout/>
+<script src="../script/pop-up.js"></script>
+</body>
+</html>

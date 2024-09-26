@@ -1,0 +1,3 @@
+   # Restrict access to the directory
+   Order allow,deny
+   Deny from all

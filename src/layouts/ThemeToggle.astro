@@ -1,0 +1,152 @@
+---
+import "../styles/theme-changer.scss";
+---
+
+<style>
+
+    body {
+        font-family: 'Satoshi', sans-serif !important;
+        transition: all 0.4s ease-in-out;
+    }
+
+    h1 {
+        font-size: 1.2em;
+        font-weight: bolder;
+    }
+</style>
+<div class="toggle-container">
+    <div
+            class="logo-text-full"
+            onclick="window.location.href='/'"
+            style="cursor:pointer;"
+    >
+        <h1>HUNTER.</h1>
+    </div>
+    <div class="spacer-block"></div>
+    <div class="toggle-wrapper">
+        <div id="theme-toggle" class="theme-toggle">Light</div>
+    </div>
+</div>
+<script is:inline>let toggleButton = document.getElementById('theme-toggle');
+let systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+
+// Check for the saved preference in local storage
+let userPreference = localStorage.getItem('theme') || systemTheme;
+
+// Change theme on user preference
+changeTheme(userPreference);
+
+// Update theme on system preference change
+window.matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener('change', (event) => {
+        if (!localStorage.getItem('theme')) {
+            changeTheme(event.matches ? "dark" : "light");
+        }
+    });
+
+// Listen for theme-toggle button click
+toggleButton.addEventListener('click', function () {
+    this.classList.toggle('is-dark');
+    let theme = this.classList.contains('is-dark') ? 'dark' : 'light';
+    localStorage.setItem('theme', theme);
+    changeTheme(theme);
+});
+
+// Function to change theme
+function changeTheme(theme) {
+    if (theme === 'dark') {
+        toggleButton.classList.add('is-dark');
+        toggleButton.innerHTML = 'Dark';   // Dark mode button text
+    } else {
+        toggleButton.classList.remove('is-dark');
+        toggleButton.innerHTML = 'Light';  // Light mode button text
+    }
+    document.body.classList.remove('dark', 'light');
+    document.body.classList.add(theme);
+}
+
+/*
+function changeTheme() {
+  let innerElement = document.querySelector(".theme-toggle");
+  let theme = innerElement.innerText.toLowerCase();
+  let bodyTag = document.body;
+  let workWraps = document.querySelectorAll(".work_title-wrap");
+  let headerTexts = document.querySelectorAll("h1");
+  let ctaButtons = document.querySelectorAll(".hero_button-cta");
+  let brandTag = document.querySelector(".tag-wrapper");
+  let cardInfos = document.querySelectorAll(".card");
+  let modalText = document.querySelectorAll('.project-item');
+
+  if (theme === "dark") {
+    innerElement.classList.add("is-dark");
+    innerElement.innerText = "light";
+    document
+      .querySelector(".toggle-wrapper")
+      .classList.add("toggle-wrapper-is-dark");
+    bodyTag.style.color = "hsl(59, 6.5%, 95.1%)";
+    bodyTag.style.backgroundColor = "hsl(50, 6.0%, 10.0%)";
+
+    workWraps.forEach((element) => {
+      element.style.backgroundColor = "hsl(50, 6.0%, 10.0%)";
+    });
+
+    headerTexts.forEach((element) => {
+      element.style.color = "hsl(59, 6.5%, 95.1%)";
+    });
+    modalText.forEach((element) => {
+      element.style.color = "hsl(59, 6.5%, 95.1%)";
+    });
+
+    ctaButtons.forEach((element) => {
+      element.style.backgroundColor = "hsl(59, 6.5%, 95.1%)";
+      element.style.borderColor = "hsl(59, 6.5%, 95.1%)";
+      element.style.color = "hsl(50, 6.0%, 10.0%)";
+    });
+
+    brandTag.style.backgroundColor = "hsl(59, 6.5%, 95.1%)";
+    brandTag.style.color = "hsl(50, 6.0%, 10.0%)";
+
+    cardInfos.forEach((element) => {
+      element.style.color = "#000000";
+    });
+    let state = "dark-mode";
+    console.log(state);
+  } else if (theme === "light") {
+    innerElement.classList.remove("is-dark");
+    document
+      .querySelector(".toggle-wrapper")
+      .classList.remove("toggle-wrapper-is-dark");
+    innerElement.innerText = "dark";
+    bodyTag.style.backgroundColor = "hsl(59, 6.5%, 95.1%)";
+
+    workWraps.forEach((element) => {
+      element.style.backgroundColor = "hsl(50, 2.0%, 55.7%)";
+    });
+    modalText.forEach((element) => {
+      element.style.color = "hsl(50, 6%, 10%)";
+    });
+
+    headerTexts.forEach((element) => {
+      element.style.color = "#000000";
+    });
+
+    ctaButtons.forEach((element) => {
+      element.style.backgroundColor = "hsl(50, 6.0%, 10.0%)";
+      element.style.borderColor = "rgba(0, 0, 0, .2)";
+      element.style.color = "hsl(59, 6.5%, 95.1%)";
+    });
+
+    brandTag.style.backgroundColor = "hsl(50, 6.0%, 10.0%)";
+    brandTag.style.color = "hsl(59, 6.5%, 95.1%)";
+
+    cardInfos.forEach((element) => {
+      element.style.color = "#000000";
+    });
+    let state = "light-mode";
+    console.log(state);
+  }
+}
+window.onload = function () {
+  changeTheme();
+};*/
+</script>
