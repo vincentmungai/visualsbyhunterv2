@@ -1,7 +1,9 @@
 import imagesLoaded from 'imagesloaded';
 
 // Ensure the page is scrolled to the top before any animations or loaders
-window.scrollTo(0, 0);
+window.addEventListener('load', () => {
+    window.scrollTo(0, 0);
+});
 
 // Function to get the last visit time from localStorage
 function getLastVisitTime() {
@@ -60,11 +62,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // TEXT SPLIT
         const logo = document.querySelector('.logo');
-
         const letters = logo.textContent.split('');
         logo.textContent = '';
+
         letters.forEach((letter) => {
-            logo.innerHTML += `<span class="letter">${letter}</span>`;
+            logo.innerHTML += `<span class="letter">${letter}</span>`; // Corrected string template
         });
 
         gsap.set('.letter', {display: 'inline-block'});
@@ -78,11 +80,19 @@ document.addEventListener('DOMContentLoaded', () => {
         gsap.set('.text3 span', {display: "inline-block"});
         gsap.set('.text4 span', {display: "inline-block"});
         gsap.set('.work_title-wrap', {opacity: 0});
+
         tl.fromTo('.text1 span', {y: "100%"}, {y: "0", ease: "power1.out", duration: 1}, '<50%');
         tl.fromTo('.text2 span', {y: "-100%"}, {y: "0", ease: "power1.out", duration: 1}, '<50%');
         tl.fromTo('.text3 span', {x: "100%"}, {x: "0", ease: "power1.out", duration: 1}, '<50%');
         tl.fromTo('.text4 span', {y: "120%"}, {y: "0", ease: "power1.out", duration: 1}, '<50%');
         tl.fromTo('.work_title-wrap', {opacity: 0}, {opacity: 1}, '<50%');
-        tl.fromTo('work_image', {opacity: 1, duration: 2, ease: "power1.out"});
+        tl.fromTo('.work_image', {opacity: 1, duration: 2, ease: "power1.out"}); // Corrected missing selector dot for .work_image
+
+        // Error Handling for Images Loading Failure
+        imgLoad.on('fail', function(instance) {
+            console.log('Some images failed to load.');
+            // Implement any fallback logic here, such as removing the loader immediately
+            gsap.set('.loader', {scaleY: 0}); // Fallback to remove loader
+        });
     });
 });
