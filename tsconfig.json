@@ -1,3 +1,29 @@
 {
-  "extends": "astro/tsconfigs/base"
+  "extends": "astro/tsconfigs/base",
+  "compilerOptions": {
+    // Enable TypeScript strict mode for type safety
+    "strict": true,
+
+    // Allow JavaScript files to be compiled with TypeScript
+    "allowJs": true,
+
+    // Enable DOM-related typings for client-side code
+    "lib": ["dom", "esnext"],
+
+    // Disable some specific strict options for more flexibility
+    "strictNullChecks": false,  // Disable strict checks for null and undefined
+    "noImplicitAny": false,     // Allow implicit 'any' types
+    "noImplicitThis": false,    // Allow 'this' to be implicitly 'any'
+
+    // Enable source maps for better debugging
+    "sourceMap": true,
+
+    // Target modern JavaScript versions
+    "target": "ESNext",
+    "module": "ESNext",
+
+    // Allow synthetic default imports (useful for working with modules that don't export a default)
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  }
 }
