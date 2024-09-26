@@ -5,6 +5,9 @@ import vercel from "@astrojs/vercel/serverless";
 export default defineConfig({
     output: "server",
     adapter: vercel(),
+    image: {
+      domains: ["https://supabase.com/"],
+    },
     remotepatterns: [{ protocol: "https" }],
     devToolbar: {
         enabled: false
