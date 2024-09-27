@@ -5,6 +5,7 @@ import BrandTag from "../../components/BrandTag.astro";
 import NavBar from "../../components/NavBar.astro";
 import ThemeToggle from "../../layouts/ThemeToggle.astro";
 import "../../styles/page-load.css";
+import { Image } from 'astro:assets';
 
 // Helper function to check if an image exists
 async function imageExists(url) {
@@ -48,7 +49,7 @@ const projectItems = await Promise.all(
             content="Explore Hunter's stunning world of photography, showcasing the beauty of Nairobi, Kenya, and beyond. Through his lens, experience the vibrant landscapes, unforgettable wildlife, and compelling moments captured meticulously by this acclaimed local photographer."
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Product | Hunter</title>
+    <title>product | Hunter</title>
     <link
             rel="icon"
             type="image/svg+xml"
@@ -67,7 +68,8 @@ const projectItems = await Promise.all(
         {projectItems.map(item => (
                 <div class="project-item">
                     <div class="project-modal" data-modal-target={`#${item.modalId}`}>
-                        <img src={item.imageSrc} alt={`photo number ${item.imageNumber} on Hunter's Website`} loading="lazy" class="hero-fade">
+                        <Image src={item.imageSrc} alt={`photo number ${item.imageNumber} on Hunter's Website`} loading="lazy" class="hero-fade" widths={[240, 540, 720, item.imageSrc.width]}
+                               sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${item.imageSrc.width}px`} width={300} height={400} />
                         <div class="projects-description-wrapper">
                             <p>DSC082{item.imageNumber}</p>
                             <div class="icon">

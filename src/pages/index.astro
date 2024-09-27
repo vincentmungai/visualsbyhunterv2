@@ -8,214 +8,215 @@ import PricingCards from "../components/PricingCards.astro";
 import NavBar from "../components/NavBar.astro";
 import ThemeToggle from "../layouts/ThemeToggle.astro";
 import BrandTag from "../components/BrandTag.astro";
-import PageLoader from "../layouts/PageLoader.astro";
-import { Image } from "astro:assets";
+import {Image} from "astro:assets";
 ---
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8"/>
     <meta
-      name="description"
-      content="Explore Hunter's stunning world of photography, showcasing the beauty of Nairobi, Kenya, and beyond. Through his lens, experience the vibrant landscapes, unforgettable wildlife, and compelling moments captured meticulously by this acclaimed local photographer."
+            name="description"
+            content="Explore Hunter's stunning world of photography, showcasing the beauty of Nairobi, Kenya, and beyond. Through his lens, experience the vibrant landscapes, unforgettable wildlife, and compelling moments captured meticulously by this acclaimed local photographer."
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Hunter | Home</title>
-    <link rel="manifest" href="/manifest.json" />
+    <link rel="manifest" href="/manifest.json"/>
     <link
-      rel="icon"
-      type="image/svg+xml"
-      href="/assets/icons/hunter-logo.svg"
+            rel="icon"
+            type="image/svg+xml"
+            href="/assets/icons/hunter-logo.svg"
     />
     <link
-      rel="preload"
-      href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap"
-      as="style"
+            rel="preload"
+            href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap"
+            as="style"
     />
     <link
-      rel="prefetch"
-      href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap"
-      as="style"
+            rel="prefetch"
+            href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap"
+            as="style"
     />
-    <link rel="manifest" href="/manifest.json" />
-  </head>
+    <link rel="manifest" href="/manifest.json"/>
+</head>
 
-  <body>
-  <!--<PageLoader/>-->
-    <BrandTag />
-    <ThemeToggle />
-    <NavBar/>
-    <div class="ImageGrid_wrapper">
-      <div class="page-styles w-embed">
+<body>
+<!--<PageLoader/>-->
+<BrandTag/>
+<ThemeToggle/>
+<NavBar/>
+<div class="ImageGrid_wrapper">
+    <div class="page-styles w-embed">
         <style>
-          body {
-            font-family: "Satoshi", sans-serif;
-            transition: all 0.4s ease-in-out;
-          }
-
-          @media screen and (min-width: 768px) {
-            [item-style="wide"] {
-              grid-column-start: span 2;
-              grid-column-end: span 2;
-              grid-row-start: span 1;
-              grid-row-end: span 1;
+            body {
+                font-family: "Satoshi", sans-serif;
+                transition: all 0.4s ease-in-out;
             }
 
-            [item-style="tall"] {
-              grid-column-start: span 1;
-              grid-column-end: span 1;
-              grid-row-start: span 2;
-              grid-row-end: span 2;
-            }
-          }
+            @media screen and (min-width: 768px) {
+                [item-style="wide"] {
+                    grid-column-start: span 2;
+                    grid-column-end: span 2;
+                    grid-row-start: span 1;
+                    grid-row-end: span 1;
+                }
 
-          .w-webflow-badge {
-            display: none !important;
-          }
-          /* h1 {
-          overflow: hidden;
-          clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-        } */
+                [item-style="tall"] {
+                    grid-column-start: span 1;
+                    grid-column-end: span 1;
+                    grid-row-start: span 2;
+                    grid-row-end: span 2;
+                }
+            }
+
+            .w-webflow-badge {
+                display: none !important;
+            }
+
+            /* h1 {
+            overflow: hidden;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+          } */
         </style>
-      </div>
-      <div class="container is-work">
+    </div>
+    <div class="container is-work">
         <div class="heading-wrapper">
-          <h1 class="main-header">
+            <h1 class="main-header">
             <span class="header_text-component text1">
               <span>Life's</span></span
             >
-            <span class="header_text-component text2"><span>Stories</span></span
-            >
-            <span class="header_text-component text3"><span>Told</span></span>
-            <span class="header_text-component text4">
+                <span class="header_text-component text2"><span>Stories</span></span
+                >
+                <span class="header_text-component text3"><span>Told</span></span>
+                <span class="header_text-component text4">
               <span>effortlessly!</span></span
-            >
-          </h1>
+                >
+            </h1>
         </div>
         <div class="hero_button-wrapper">
-          <a href="tel:+25417712699" class="hero_button-cta"
+            <a href="tel:+25417712699" class="hero_button-cta"
             >Contact Me&nbsp
-            <svg
-              class="u_icon-arrow-2"
-              xmlns="http://www.w3.org/2000/svg"
-              width="10px"
-              height="10px"
-              viewBox="0 0 10.344 10.767"
-            >
-              <g
-                "Group_3"
-                data-name="Group 3"
-                transform="translate(-282.783 -1330.75)"
-              >
-                <path
-                  id="Path_1"
-                  data-name="Path 1"
-                  d="M24.93.5h9.315V9.815"
-                  transform="translate(258.133 1331)"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-miterlimit="10"
-                  stroke-width="3"></path>
-                <line
-                  id="Line_1"
-                  data-name="Line 1"
-                  x1="9.051"
-                  y2="9.5"
-                  transform="translate(283.326 1331.5)"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-miterlimit="10"
-                  stroke-width="3"></line>
-              </g>
-            </svg>
-          </a>
+                <svg
+                        class="u_icon-arrow-2"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="10px"
+                        height="10px"
+                        viewBox="0 0 10.344 10.767"
+                >
+                    <g
+                            "Group_3"
+                            data-name="Group 3"
+                            transform="translate(-282.783 -1330.75)"
+                    >
+                        <path
+                                id="Path_1"
+                                data-name="Path 1"
+                                d="M24.93.5h9.315V9.815"
+                                transform="translate(258.133 1331)"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-miterlimit="10"
+                                stroke-width="3"></path>
+                        <line
+                                id="Line_1"
+                                data-name="Line 1"
+                                x1="9.051"
+                                y2="9.5"
+                                transform="translate(283.326 1331.5)"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-miterlimit="10"
+                                stroke-width="3"></line>
+                    </g>
+                </svg>
+            </a>
         </div>
         <!-- Work-wrapper starts here -->
         <div class="work_wrapper w-dyn-list">
-          <div role="list" class="work_list w-dyn-items">
-            <!-- Hero card -->
+            <div role="list" class="work_list w-dyn-items">
+                <!-- Hero card -->
 
-            {
-              allWorkCards.map((content) => (
-                
-                  <div
-                    item-style={content.frontmatter.size}
-                    role="listitem"
-                    class="work_item w-dyn-item "
-                    onclick={`window.location.href='${content.frontmatter.route}'`}
-                  >
-                    <Image
-                      src={content.frontmatter.image}
-                      alt="Photos by Hunter"
-                      width={300}
-                      height={600}
-                      class="work_image hero-fade"
-                    />
-                    <a href={content.frontmatter.route}>
-                    <div class="work_content-wrap">
-                      <div class="work_date-wrap" />
-                      <div class="work_title-wrap">
-                        <div class="work_title">
-                          {content.frontmatter.category}
-                        </div>
-                        <div class="work_description">
-                          {content.frontmatter.description}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              ))
-            }
-            <!-- Hero card -->
-          </div>
+                {
+                    allWorkCards.map((content) => (
+
+                            <div
+                                    item-style={content.frontmatter.size}
+                                    role="listitem"
+                                    class="work_item w-dyn-item "
+                                    onclick={`window.location.href='${content.frontmatter.route}'`}
+                            >
+                                <Image
+                                        src={content.frontmatter.image}
+                                        alt="Photos by Hunter"
+                                        width={300}
+                                        height={600}
+                                        class="work_image hero-fade"
+                                        widths={[240, 540, 720, content.frontmatter.image.width]}
+                                        sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${content.frontmatter.image.width}px`}
+                                />
+                                <a href={content.frontmatter.route}>
+                                    <div class="work_content-wrap">
+                                        <div class="work_date-wrap"/>
+                                        <div class="work_title-wrap">
+                                            <div class="work_title">
+                                                {content.frontmatter.category}
+                                            </div>
+                                            <div class="work_description">
+                                                {content.frontmatter.description}
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                    </a>
+                    ))
+                }
+                <!-- Hero card -->
+            </div>
         </div>
 
         <!-- Work-wrapper ends here -->
-      </div>
-      <style>
+    </div>
+    <style>
         .u_icon-arrow {
-          transform: rotate(135deg);
+            transform: rotate(135deg);
         }
 
         @media screen and (min-width: 768px) {
-          [item-style="wide"] {
-            grid-column-start: span 2;
-            grid-column-end: span 2;
-            grid-row-start: span 1;
-            grid-row-end: span 1;
-          }
+            [item-style="wide"] {
+                grid-column-start: span 2;
+                grid-column-end: span 2;
+                grid-row-start: span 1;
+                grid-row-end: span 1;
+            }
 
-          [item-style="tall"] {
-            grid-column-start: span 1;
-            grid-column-end: span 1;
-            grid-row-start: span 2;
-            grid-row-end: span 2;
-          }
+            [item-style="tall"] {
+                grid-column-start: span 1;
+                grid-column-end: span 1;
+                grid-row-start: span 2;
+                grid-row-end: span 2;
+            }
 
-          [item-style="x-tall"] {
-            grid-column-start: span 1;
-            grid-column-end: span 1;
-            grid-row-start: span 3;
-            grid-row-end: span 3;
-          }
+            [item-style="x-tall"] {
+                grid-column-start: span 1;
+                grid-column-end: span 1;
+                grid-row-start: span 3;
+                grid-row-end: span 3;
+            }
 
-          [item-style="x-wide"] {
-            grid-column-start: span 3;
-            grid-column-end: span 3;
-            grid-row-start: span 1;
-            grid-row-end: span 1;
-          }
+            [item-style="x-wide"] {
+                grid-column-start: span 3;
+                grid-column-end: span 3;
+                grid-row-start: span 1;
+                grid-row-end: span 1;
+            }
         }
 
         a {
-          height: 100%;
+            height: 100%;
         }
 
         .service-name {
-          font-family:
-            system-ui,
+            font-family: system-ui,
             -apple-system,
             BlinkMacSystemFont,
             "Segoe UI",
@@ -226,60 +227,60 @@ import { Image } from "astro:assets";
             "Open Sans",
             "Helvetica Neue",
             sans-serif;
-          text-transform: uppercase;
-          font-weight: bold;
+            text-transform: uppercase;
+            font-weight: bold;
         }
-      </style>
-    </div>
-    <!--<div class="container">
-      <PricingCards />
-    </div>-->
-    <div
-      class="hero_button-wrapper"
-      style="align-items: center !important; justify-content: center !important;"
-    >
-      <a href="tel:+25417712699" class="hero_button-cta"
-        >Contact Me&nbsp
+    </style>
+</div>
+<!--<div class="container">
+  <PricingCards />
+</div>-->
+<div
+        class="hero_button-wrapper"
+        style="align-items: center !important; justify-content: center !important;"
+>
+    <a href="tel:+25417712699" class="hero_button-cta"
+    >Contact Me&nbsp
         <svg
-          class="u_icon-arrow-2"
-          xmlns="http://www.w3.org/2000/svg"
-          width="10px"
-          height="10px"
-          viewBox="0 0 10.344 10.767"
+                class="u_icon-arrow-2"
+                xmlns="http://www.w3.org/2000/svg"
+                width="10px"
+                height="10px"
+                viewBox="0 0 10.344 10.767"
         >
-          <g
-            "Group_3"
-            data-name="Group 3"
-            transform="translate(-282.783 -1330.75)"
-          >
-            <path
-              id="Path_1"
-              data-name="Path 1"
-              d="M24.93.5h9.315V9.815"
-              transform="translate(258.133 1331)"
-              fill="none"
-              stroke="currentColor"
-              stroke-miterlimit="10"
-              stroke-width="3"></path>
-            <line
-              id="Line_1"
-              data-name="Line 1"
-              x1="9.051"
-              y2="9.5"
-              transform="translate(283.326 1331.5)"
-              fill="none"
-              stroke="currentColor"
-              stroke-miterlimit="10"
-              stroke-width="3"></line>
-          </g>
+            <g
+                    "Group_3"
+                    data-name="Group 3"
+                    transform="translate(-282.783 -1330.75)"
+            >
+                <path
+                        id="Path_1"
+                        data-name="Path 1"
+                        d="M24.93.5h9.315V9.815"
+                        transform="translate(258.133 1331)"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-miterlimit="10"
+                        stroke-width="3"></path>
+                <line
+                        id="Line_1"
+                        data-name="Line 1"
+                        x1="9.051"
+                        y2="9.5"
+                        transform="translate(283.326 1331.5)"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-miterlimit="10"
+                        stroke-width="3"></line>
+            </g>
         </svg>
-      </a>
-    </div>
-    <FooterLayout />
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script>
+    </a>
+</div>
+<FooterLayout/>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script>
 
-  </script>
+</script>
 
-  </body>
+</body>
 </html>

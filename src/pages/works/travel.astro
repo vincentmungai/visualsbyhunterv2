@@ -5,6 +5,7 @@ import BrandTag from "../../components/BrandTag.astro";
 import NavBar from "../../components/NavBar.astro";
 import ThemeToggle from "../../layouts/ThemeToggle.astro";
 import "../../styles/page-load.css";
+import { Image } from 'astro:assets';
 
 // Helper function to check if an image exists
 async function imageExists(url) {
@@ -20,7 +21,7 @@ async function imageExists(url) {
 const projectItems = await Promise.all(
     Array.from({ length: 30 }, async (_, i) => {
         const imageNumber = i + 1; // Numbers from 1 to 30
-        const imageSrc = `https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/travel/${imageNumber}.jpg`;
+        const imageSrc = `https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/travel/${imageNumber}.webp`;
         const modalId = `image${imageNumber}`;
 
         // Check if the image exists
@@ -67,7 +68,8 @@ const projectItems = await Promise.all(
         {projectItems.map(item => (
                 <div class="project-item">
                     <div class="project-modal" data-modal-target={`#${item.modalId}`}>
-                        <img src={item.imageSrc} alt={`photo number ${item.imageNumber} on Hunter's Website`} loading="lazy" class="hero-fade">
+                        <Image src={item.imageSrc} alt={`photo number ${item.imageNumber} on Hunter's Website`} loading="lazy" class="hero-fade" widths={[240, 540, 720, item.imageSrc.width]}
+                               sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${item.imageSrc.width}px`} width={300} height={400} />
                         <div class="projects-description-wrapper">
                             <p>DSC082{item.imageNumber}</p>
                             <div class="icon">
