@@ -9,6 +9,7 @@ import NavBar from "../components/NavBar.astro";
 import ThemeToggle from "../layouts/ThemeToggle.astro";
 import BrandTag from "../components/BrandTag.astro";
 import {Image} from "astro:assets";
+import PageLoader from "../components/PageLoader.astro";
 ---
 
 <!doctype html>
@@ -41,7 +42,7 @@ import {Image} from "astro:assets";
 </head>
 
 <body>
-<!--<PageLoader/>-->
+<PageLoader/>
 <BrandTag/>
 <ThemeToggle/>
 <NavBar/>
