@@ -1,150 +1,175 @@
 ---
-import "../../styles/lightbox.css";
-import FooterLayout from "../../components/FooterComponent.astro";
-import BrandTag from "../../components/BrandTag.astro";
-import NavBar from "../../components/NavBar.astro";
-import ThemeToggle from "../../layouts/ThemeToggle.astro";
-import "../../styles/page-load.css";
-
-// Static image data that doesn't change frequently.
-const imagePrefix = "https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/portraits";
-const maxImages = 30;
-
-const projectItems = Array.from({ length: maxImages }, (_, i) => {
-    const imageNumber = i + 1; // Numbers from 1 to 30
-    const imageSrc = `${imagePrefix}/${imageNumber}.webp`;
-    const modalId = `image${imageNumber}`;
-
-    return {
-        imageNumber,
-        imageSrc,
-        modalId
-    };
-});
+export const prerender = true; // Enable SSR but allow client-side execution where needed
 ---
 
-<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8" />
     <meta
-            name="description"
-            content="Explore Hunter's stunning world of photography, showcasing the beauty of Nairobi, Kenya, and beyond. Through his lens, experience the vibrant landscapes, unforgettable wildlife, and compelling moments captured meticulously by this acclaimed local photographer."
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+            name="viewport"
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Portraits | Hunter</title>
-    <link rel="icon" type="image/svg+xml" href="/assets/icons/hunter-logo.svg"/>
-    <link rel="manifest" href="/manifest.json"/>
+    <meta content="ie=edge" http-equiv="X-UA-Compatible" />
+    <title>Images test with Lazy Loading & Skeleton Loading</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            padding: 20px;
+        }
+
+        .gallery-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            row-gap: 20px;
+            column-gap: 20px;
+        }
+
+        @media screen and (max-width: 480px) {
+            .gallery-wrapper {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                grid-template-rows: repeat(auto-fit, minmax(400px, 1fr));
+            }
+        }
+
+        .lazy-loaded {
+            opacity: 1;
+        }
+
+        /* Skeleton Loader Styles */
+        .skeleton {
+            height: 450px;
+            width: 100%;
+            background-color: #ddd;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid red; /* For easy visibility during debugging */
+        }
+
+        .skeleton::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(
+                    90deg,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.5) 50%,
+                    rgba(255, 255, 255, 0) 100%
+            );
+            animation: skeleton-loading 1.5s infinite;
+        }
+
+        @keyframes skeleton-loading {
+            0% {
+                left: -100%;
+            }
+            50% {
+                left: 100%;
+            }
+            100% {
+                left: -100%;
+            }
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .hidden {
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+        }
+
+        .visible {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
-<ThemeToggle/>
-<BrandTag/>
-<NavBar/>
-<main>
-    <div class="title-wrapper"><h1>Portraits</h1></div>
-    <div class="work-projects-container">
-        {projectItems.map(item => (
-                <div class="project-item">
-                    <div class="project-modal" data-modal-target={`#${item.modalId}`}>
-                        <img src={item.imageSrc} alt={`photo number ${item.imageNumber} on Hunter's Website`} loading="lazy" class="hero-fade" width="300" height="400" />
-                        <div class="projects-description-wrapper">
-                            <p>DSC082{item.imageNumber}</p>
-                            <div class="icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 16 16">
-                                    <g transform="translate(0, 0)">
-                                        <line fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="14.5" y1="1.5" x2="9.5" y2="6.5"></line>
-                                        <line fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="6.5" y1="9.5" x2="1.5" y2="14.5"></line>
-                                        <polyline fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="8.5,1.5 14.5,1.5 14.5,7.5 "></polyline>
-                                        <polyline fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="1.5,8.5 1.5,14.5 7.5,14.5 "></polyline>
-                                    </g>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal" id={item.modalId}>
-                        <div class="modal-header">
-                            <div class="title">DSC082{item.imageNumber}</div>
-                            <button data-close-button class="close-button">×</button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="project-grid">
-                                <div class="content_image-wrapper">
-                                    <img alt="project image" src={item.imageSrc} class="modal-image hero-fade">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        ))}
-    </div>
-</main>
-
-<div id="overlay"></div>
-<FooterLayout/>
-
-<style>
-    .modal {
-        display: none;
-    }
-
-    .modal.active {
-        display: block;
-    }
-
-    #overlay {
-        display: none;
-    }
-
-    #overlay.active {
-        display: block;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-    }
-
-    .close-button {
-        cursor: pointer;
-    }
-</style>
+<div class="gallery-wrapper"></div>
 
 <script>
+    // Create and return an img element with a skeleton loader in place
+    function createImageElement(src, alt) {
+        const imgContainer = document.createElement('div');
+        imgContainer.classList.add('skeleton'); // Add skeleton class for placeholder animation
+
+        const img = document.createElement('img');
+        img.dataset.src = src; // Set the image source in data-src for lazy loading
+        img.alt = alt;
+        img.classList.add('hidden'); // Keep the image hidden initially
+        img.style.minHeight = '100%';
+        img.style.width = '100%';
+        img.style.objectFit = 'cover';
+        img.style.objectPosition = 'center';
+
+        // Add error handling for images that fail to load
+        img.onerror = () => {
+            console.error(`Failed to load image: ${src}`);
+            imgContainer.remove(); // Optionally remove the container if the image fails to load
+        };
+
+        // Append the image into the container
+        imgContainer.appendChild(img);
+
+        return imgContainer; // Return container with the image inside
+    }
+
+    // Lazy load images using IntersectionObserver
+    function lazyLoadImages() {
+        const images = document.querySelectorAll('img[data-src]'); // Select all images to observe
+        const options = {
+            root: null,
+            rootMargin: '100px', // Start loading earlier when images are 100px away from the viewport
+            threshold: 0.01 // Load image when 1% of it is visible
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const img = entry.target;
+
+                if (entry.isIntersecting && !img.classList.contains('visible')) { // Only load if not yet visible
+                    const container = img.parentElement;
+
+                    // Set the actual image source and handle loading
+                    img.src = img.dataset.src;
+                    img.onload = () => {
+                        img.classList.add('visible'); // Make the image visible
+                        img.classList.remove('hidden'); // Remove the hidden class
+                        container.classList.remove('skeleton'); // Remove skeleton loader
+                        container.style.border = 'none'; // Remove border after loading
+                    };
+                }
+            });
+        }, options);
+
+        images.forEach(img => observer.observe(img)); // Observe each image
+    }
+
+    // Generate image tags with skeleton loaders
+    function generateImageTags() {
+        const imagesContainer = document.querySelector(".gallery-wrapper");
+        for (let i = 1; i <= 33; i++) {
+            const imageUrl = `https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/portraits/${i}.webp`;
+            const imgElement = createImageElement(imageUrl, `Image ${i}`);
+            imagesContainer.appendChild(imgElement);
+        }
+
+        lazyLoadImages(); // Call lazy load function after generating images
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
-        const openModalButtons = document.querySelectorAll('[data-modal-target]');
-        const closeModalButtons = document.querySelectorAll('[data-close-button]');
-        const overlay = document.getElementById('overlay');
-
-        // Open modal
-        openModalButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const modal = document.querySelector(button.getAttribute('data-modal-target'));
-                if (modal) {
-                    modal.classList.add('active');
-                    overlay.classList.add('active');
-                }
-            });
-        });
-
-        // Close modal
-        closeModalButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const modal = button.closest('.modal');
-                if (modal) {
-                    modal.classList.remove('active');
-                    overlay.classList.remove('active');
-                }
-            });
-        });
-
-        // Close modal when clicking overlay
-        overlay.addEventListener('click', () => {
-            document.querySelectorAll('.modal.active').forEach(modal => modal.classList.remove('active'));
-            overlay.classList.remove('active');
-        });
+        generateImageTags(); // Run the function to generate and lazy-load images after DOM is ready
     });
 </script>
-
 </body>
 </html>
