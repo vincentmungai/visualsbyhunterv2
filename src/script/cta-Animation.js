@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Initially set the .project-name opacity to 0 and move it up by 50px
     gsap.set(".project-name", {opacity: 0, y: 100});
-    gsap.set(".cta-button-wrapper", {opacity: 0, y: 100});
+    gsap.set(".animated-button", {opacity: 0, y: 100});
     gsap.set(".page-cta-wrapper", {opacity: 0, scale: .9});
     // Create a timeline
     const tl = gsap.timeline({
@@ -20,11 +20,12 @@ document.addEventListener('DOMContentLoaded', function () {
         duration: 1,
         ease: "power2.out"
     });
-    tl.to(".cta-button-wrapper", {
+    tl.to(".animated-button", {
         opacity: 1,
         y: 0,
         duration: 1,
-        ease: "power2.out"
+        ease: "power2.out",
+        stagger: 0.2
     }, "<55%");
 
 
