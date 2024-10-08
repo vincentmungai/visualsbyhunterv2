@@ -473,32 +473,9 @@ import PageLoader from "../components/PageLoader.astro";
 <FooterLayout/>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
-<script src="/src/script/lenisScroll.js" defer></script>
-<script src="/src/script/cta-Animation.js" defer></script>
-<script is:inline>
-    document.addEventListener('DOMContentLoaded', () => {
-
-        // Initialize Lenis with optional settings for smoother scrolling
-        const lenis = new Lenis({
-            lerp: 0.2,  // Adjust lerp value for smoother scrolling
-            duration: 1.5,  // Adjust the scroll duration
-            easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),  // Custom easing function
-            direction: 'vertical',  // Use vertical scrolling (default)
-            smooth: true,  // Enable smooth scrolling
-            smoothTouch: true,  // Disable smooth scrolling on touch devices if not needed
-        });
-
-        lenis.on('scroll', (e) => {
-            console.log('Scroll event:', e);  // Logging scroll event to see if it's working
-        });
-
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-
-        requestAnimationFrame(raf);
-    });
+<script src="/src/script/lenisScroll.js" defer is:inline></script>
+<script src="/src/script/cta-Animation.js" defer is:inline></script>
+<script>
 </script>
 </body>
 </html>
