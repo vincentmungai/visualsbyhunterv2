@@ -22,4 +22,7 @@ export default defineConfig({
             assetsInclude: ['**/*.jpeg', '**/*.jpg', '**/*.png', '**/*.gif', '**/*.webp'],
         },
     },
+    redirects: {
+        '/works/isles-and-wedding-vows': '/projects/isles-and-wedding-vows',
+      },
 });

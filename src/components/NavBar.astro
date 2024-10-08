@@ -1,11 +1,57 @@
 <head>
-    <link rel="preload" href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" as="style">
-    <link rel="prefetch" href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" as="style">
-    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
+
 </head>
 
 <!--rest of your document here-->
 <style>
+    @font-face {
+        font-family: 'Satoshi';
+        src: url('/fonts/Satoshi-Regular.woff2') format('woff2'),
+        url('/fonts/Satoshi-Regular.woff') format('woff'),
+        url('/fonts/Satoshi-Regular.ttf') format('truetype');
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    /* Bold */
+    @font-face {
+        font-family: 'Satoshi';
+        src: url('/fonts/Satoshi-Bold.woff2') format('woff2'),
+        url('/fonts/Satoshi-Bold.woff') format('woff'),
+        url('/fonts/Satoshi-Bold.ttf') format('truetype');
+        font-weight: 700;
+        font-style: normal;
+    }
+
+    /* Italic */
+    @font-face {
+        font-family: 'Satoshi';
+        src: url('/fonts/Satoshi-Italic.woff2') format('woff2'),
+        url('/fonts/Satoshi-Italic.woff') format('woff'),
+        url('/fonts/Satoshi-Italic.ttf') format('truetype');
+        font-weight: 400;
+        font-style: italic;
+    }
+
+    /* Bold Italic */
+    @font-face {
+        font-family: 'Satoshi';
+        src: url('/fonts/Satoshi-BoldItalic.woff2') format('woff2'),
+        url('/fonts/Satoshi-BoldItalic.woff') format('woff'),
+        url('/fonts/Satoshi-BoldItalic.ttf') format('truetype');
+        font-weight: 700;
+        font-style: italic;
+    }
+
+    /* Light */
+    @font-face {
+        font-family: 'Satoshi';
+        src: url('/fonts/Satoshi-Light.woff2') format('woff2'),
+        url('/fonts/Satoshi-Light.woff') format('woff'),
+        url('/fonts/Satoshi-Light.ttf') format('truetype');
+        font-weight: 300;
+        font-style: normal;
+    }
     * {
         margin: 0;
         padding: 0;
@@ -19,7 +65,7 @@
     }
 
     nav {
-        border-radius: 0.8em;
+        border-radius: 7px;
         padding: 6px;
         font-size: 14px;
         background-color: hsla(50, 2%, 43.1%, 0.5);
@@ -46,9 +92,9 @@
     }
 
     .nav-container {
-        max-width: fit-content;
+        max-width: fit-content !important;
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         grid-column-gap: 10px;
     }
 
@@ -70,7 +116,7 @@
         sans-serif;
         color: hsl(50, 20%, 99%);
         padding: 4px;
-        border-radius: 0.8em;
+        border-radius: 7px;
         height: 48px;
         background-color: hsl(50, 2.0%, 43.1%);
         transition: all 0.4s ease-in-out;
@@ -90,7 +136,7 @@
 
     .logo-text {
         color: hsl(50, 6%, 10%);
-        border-radius: 0.8em;
+        border-radius: 7px;
         padding: 1em;
         height: 48px;
         background-color: hsl(57, 6%, 90.7%);
@@ -155,11 +201,11 @@
         <div class="nav-container">
             <a  tabindex="0" href="/">
                 <div class="logo-text flex-center">H.</div>
-            </a>
+            </a><!--
             <a tabindex="0" href="/projects">
                 <div class="nav-item flex-center">Projects</div>
-            </a>
-            <a tabindex="0" href="#">
+            </a>-->
+            <a tabindex="0" href="#about">
                 <div class="nav-item flex-center">About</div>
             </a>
             <a tabindex="0" href="tel:+254717712699">

@@ -28,30 +28,90 @@ import PageLoader from "../components/PageLoader.astro";
             type="image/svg+xml"
             href="/assets/icons/hunter-logo.svg"
     />
-    <link
-            rel="preload"
-            href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap"
-            as="style"
-    />
-    <link
-            rel="prefetch"
-            href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap"
-            as="style"
-    />
-    <link rel="manifest" href="/manifest.json"/>
+
 </head>
 
 <body>
-<PageLoader/>
+<!-- <PageLoader/> -->
 <BrandTag/>
 <ThemeToggle/>
 <NavBar/>
 <div class="ImageGrid_wrapper">
     <div class="page-styles w-embed">
         <style>
+            @font-face {
+                font-family: 'Satoshi';
+                src: url('/fonts/Satoshi-Regular.woff2') format('woff2'),
+                url('/fonts/Satoshi-Regular.woff') format('woff'),
+                url('/fonts/Satoshi-Regular.ttf') format('truetype');
+                font-weight: 400;
+                font-style: normal;
+            }
+
+            /* Bold */
+            @font-face {
+                font-family: 'Satoshi';
+                src: url('/fonts/Satoshi-Bold.woff2') format('woff2'),
+                url('/fonts/Satoshi-Bold.woff') format('woff'),
+                url('/fonts/Satoshi-Bold.ttf') format('truetype');
+                font-weight: 700;
+                font-style: normal;
+            }
+
+            /* Italic */
+            @font-face {
+                font-family: 'Satoshi';
+                src: url('/fonts/Satoshi-Italic.woff2') format('woff2'),
+                url('/fonts/Satoshi-Italic.woff') format('woff'),
+                url('/fonts/Satoshi-Italic.ttf') format('truetype');
+                font-weight: 400;
+                font-style: italic;
+            }
+
+            /* Bold Italic */
+            @font-face {
+                font-family: 'Satoshi';
+                src: url('/fonts/Satoshi-BoldItalic.woff2') format('woff2'),
+                url('/fonts/Satoshi-BoldItalic.woff') format('woff'),
+                url('/fonts/Satoshi-BoldItalic.ttf') format('truetype');
+                font-weight: 700;
+                font-style: italic;
+            }
+
+            /* Light */
+            @font-face {
+                font-family: 'Satoshi';
+                src: url('/fonts/Satoshi-Light.woff2') format('woff2'),
+                url('/fonts/Satoshi-Light.woff') format('woff'),
+                url('/fonts/Satoshi-Light.ttf') format('truetype');
+                font-weight: 300;
+                font-style: normal;
+            }
+
             body {
                 font-family: "Satoshi", sans-serif;
                 transition: all 0.4s ease-in-out;
+            }
+
+            .cta-button-primary {
+                font-weight: 400;
+                font-family: "Satoshi", sans-serif;
+                padding: 15px;
+                transition: all 0.5s ease-out;
+                background-color: white;
+                color: black;
+                border: 1px solid #f3f3f2;
+                border-radius: 7px;
+            }
+
+            .cta-button-primary:hover {
+                background-color: black;
+                color: white;
+                border: 1px solid black;
+            }
+
+            .description-text {
+                max-width: 500px;
             }
 
             @media screen and (min-width: 768px) {
@@ -67,72 +127,176 @@ import PageLoader from "../components/PageLoader.astro";
                     grid-column-end: span 1;
                     grid-row-start: span 2;
                     grid-row-end: span 2;
+
+
+                    .page-cta-wrapper {
+                        background-repeat: no-repeat;
+                        background-size: cover !important;
+                    }
                 }
-            }
 
-            .w-webflow-badge {
-                display: none !important;
-            }
+                .w-webflow-badge {
+                    display: none !important;
+                }
 
-            /* h1 {
-            overflow: hidden;
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-          } */
+
+                .page-cta-wrapper {
+                    background-repeat: no-repeat;
+                    height: 85vh;
+                    width: 100%;
+                    border-radius: 10px;
+                    overflow: hidden;
+                }
+
+                .page-cta {
+                    height: 100%;
+                    width: 100%;
+                    background: rgb(0, 0, 0);
+                    background: rgba(0, 0, 0, 0.5);
+                }
+
+                .page-cta {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    gap: 20px;
+                }
+
+                .project-name {
+                    font-size: clamp(4rem, 0.4706rem + 11.7647vw, 8rem);
+                    font-family: satoshi, sans-serif;
+                    font-weight: 300;
+                }
+                @media only screen and (min-width: 1023px) {
+                    .project-name {
+                        font-size:8rem !important;
+                    }
+                }
+
+                .project-name {
+                    text-align: center;
+                }
+
+                .cta-button {
+                    padding: 15px;
+                    border: 1px solid #f3f3f2;
+                    background-color: transparent;
+                    font-family: "Satoshi", sans-serif;
+                    color: #f3f3f2;
+                    cursor: pointer;
+                    font-weight: 400;
+                    font-size: 15px;
+                    transition: all 0.5s ease-out;
+                    border-radius: 7px;
+                }
+
+
+                .cta-button:hover {
+                    background-color: white;
+                    color: black;
+                    border: 1px solid #f3f3f2;
+                }
+
+                /* Test CTA */
+                body.light .project-name {
+                    color: #f3f3f2;
+                }
+
+                //    lenis styles
+                html.lenis, html.lenis body {
+                    height: auto;
+                }
+
+                .lenis.lenis-smooth {
+                    scroll-behavior: auto !important;
+                }
+
+                .lenis.lenis-smooth [data-lenis-prevent] {
+                    overscroll-behavior: contain;
+                }
+
+                .lenis.lenis-stopped {
+                    overflow: hidden;
+                }
+
+                .lenis.lenis-smooth iframe {
+                    pointer-events: none;
+                }
+
         </style>
     </div>
-    <div class="container is-work">
-        <div class="heading-wrapper">
-            <h1 class="main-header">
-            <span class="header_text-component text1">
-              <span>Life's</span></span
+
+
+    <div class="container">
+        <div class="page-cta-wrapper" style="position: relative; opacity: 0;">
+            <img src="https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/isles-and-wedding-vows/wedding-cover.jpg?t=2024-10-02T13%3A55%3A58.194Z"
+                 alt="Cover image" style="height: 100%; width: 100%; object-fit: cover;" class="cover-image">
+
+            <!-- Overlay content -->
+            <div class="page-cta"
+                 style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; z-index: 1;">
+                <div class="project-name" style="color: white; font-size: 3rem; text-align: center;">
+                    Life's Stories Told Effortlessly
+                </div>
+                <div class="cta-button-wrapper" style="margin-top: 20px; text-align: center;">
+                    <button onclick="window.location.href='#gallery'" class="cta-button-primary">
+                        Contact Me
+                    </button>
+                    <button onclick="window.location.href='#projects'" class="cta-button">
+                        View Projects
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero_button-wrapper" style="display: none;">
+        <a href="tel:+25417712699" class="hero_button-cta"
+        >Contact Me&nbsp
+            <svg
+                    class="u_icon-arrow-2"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="10px"
+                    height="10px"
+                    viewBox="0 0 10.344 10.767"
             >
-                <span class="header_text-component text2"><span>Stories</span></span
+                <g
+                        "Group_3"
+                        data-name="Group 3"
+                        transform="translate(-282.783 -1330.75)"
                 >
-                <span class="header_text-component text3"><span>Told</span></span>
-                <span class="header_text-component text4">
-              <span>effortlessly!</span></span
-                >
-            </h1>
+                    <path
+                            id="Path_1"
+                            data-name="Path 1"
+                            d="M24.93.5h9.315V9.815"
+                            transform="translate(258.133 1331)"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-miterlimit="10"
+                            stroke-width="3"></path>
+                    <line
+                            id="Line_1"
+                            data-name="Line 1"
+                            x1="9.051"
+                            y2="9.5"
+                            transform="translate(283.326 1331.5)"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-miterlimit="10"
+                            stroke-width="3"></line>
+                </g>
+            </svg>
+        </a>
+    </div>
+    <!-- Work-wrapper starts here -->
+    <div class="container">
+        <h1 id="projects">Featured Projects</h1>
+        <div class="spacer-block" style="height: 2em;"></div>
+        <div class="description-text">
+            Explore a curated collection of Hunter's most distinguished work. Each project is a reflection of our unique approach to photography, where creativity meets precision. From breathtaking landscapes to intimate portraits, these featured projects represent the heart of visualsbyhunter's passion for capturing life's most compelling moments.
         </div>
-        <div class="hero_button-wrapper">
-            <a href="tel:+25417712699" class="hero_button-cta"
-            >Contact Me&nbsp
-                <svg
-                        class="u_icon-arrow-2"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="10px"
-                        height="10px"
-                        viewBox="0 0 10.344 10.767"
-                >
-                    <g
-                            "Group_3"
-                            data-name="Group 3"
-                            transform="translate(-282.783 -1330.75)"
-                    >
-                        <path
-                                id="Path_1"
-                                data-name="Path 1"
-                                d="M24.93.5h9.315V9.815"
-                                transform="translate(258.133 1331)"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-miterlimit="10"
-                                stroke-width="3"></path>
-                        <line
-                                id="Line_1"
-                                data-name="Line 1"
-                                x1="9.051"
-                                y2="9.5"
-                                transform="translate(283.326 1331.5)"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-miterlimit="10"
-                                stroke-width="3"></line>
-                    </g>
-                </svg>
-            </a>
-        </div>
-        <!-- Work-wrapper starts here -->
+        <div class="spacer-block" style="height: 2em;"></div>
         <div class="work_wrapper w-dyn-list">
             <div role="list" class="work_list w-dyn-items">
                 <!-- Hero card -->
@@ -141,7 +305,7 @@ import PageLoader from "../components/PageLoader.astro";
                     allWorkCards.map((content) => (
 
                             <div
-                                    item-style={content.frontmatter.size}
+                                    item-style="tall"
                                     role="listitem"
                                     class="work_item w-dyn-item "
                                     onclick={`window.location.href='${content.frontmatter.route}'`}
@@ -160,128 +324,159 @@ import PageLoader from "../components/PageLoader.astro";
                                         <div class="work_date-wrap"/>
                                         <div class="work_title-wrap">
                                             <div class="work_title">
-                                                {content.frontmatter.category}
+                                                {content.frontmatter.title}
                                             </div>
                                             <div class="work_description">
                                                 {content.frontmatter.description}
                                             </div>
                                         </div>
                                     </div>
+                                </a>
                             </div>
-                    </a>
+
                     ))
                 }
                 <!-- Hero card -->
             </div>
         </div>
-
-        <!-- Work-wrapper ends here -->
     </div>
-    <style>
-        .u_icon-arrow {
-            transform: rotate(135deg);
-        }
 
-        @media screen and (min-width: 768px) {
-            [item-style="wide"] {
-                grid-column-start: span 2;
-                grid-column-end: span 2;
-                grid-row-start: span 1;
-                grid-row-end: span 1;
-            }
 
-            [item-style="tall"] {
-                grid-column-start: span 1;
-                grid-column-end: span 1;
-                grid-row-start: span 2;
-                grid-row-end: span 2;
-            }
-
-            [item-style="x-tall"] {
-                grid-column-start: span 1;
-                grid-column-end: span 1;
-                grid-row-start: span 3;
-                grid-row-end: span 3;
-            }
-
-            [item-style="x-wide"] {
-                grid-column-start: span 3;
-                grid-column-end: span 3;
-                grid-row-start: span 1;
-                grid-row-end: span 1;
-            }
-        }
-
-        a {
-            height: 100%;
-        }
-
-        .service-name {
-            font-family: system-ui,
-            -apple-system,
-            BlinkMacSystemFont,
-            "Segoe UI",
-            Roboto,
-            Oxygen,
-            Ubuntu,
-            Cantarell,
-            "Open Sans",
-            "Helvetica Neue",
-            sans-serif;
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-    </style>
+    <!-- Work-wrapper ends here -->
 </div>
-<!--<div class="container">
-  <PricingCards />
-</div>-->
-<div
-        class="hero_button-wrapper"
-        style="align-items: center !important; justify-content: center !important;"
->
-    <a href="tel:+25417712699" class="hero_button-cta"
-    >Contact Me&nbsp
-        <svg
-                class="u_icon-arrow-2"
-                xmlns="http://www.w3.org/2000/svg"
-                width="10px"
-                height="10px"
-                viewBox="0 0 10.344 10.767"
-        >
-            <g
-                    "Group_3"
-                    data-name="Group 3"
-                    transform="translate(-282.783 -1330.75)"
-            >
-                <path
-                        id="Path_1"
-                        data-name="Path 1"
-                        d="M24.93.5h9.315V9.815"
-                        transform="translate(258.133 1331)"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-miterlimit="10"
-                        stroke-width="3"></path>
-                <line
-                        id="Line_1"
-                        data-name="Line 1"
-                        x1="9.051"
-                        y2="9.5"
-                        transform="translate(283.326 1331.5)"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-miterlimit="10"
-                        stroke-width="3"></line>
-            </g>
-        </svg>
-    </a>
+<style>
+    .u_icon-arrow {
+        transform: rotate(135deg);
+    }
+
+    @media screen and (min-width: 768px) {
+        [item-style="wide"] {
+            grid-column-start: span 2;
+            grid-column-end: span 2;
+            grid-row-start: span 1;
+            grid-row-end: span 1;
+        }
+
+        [item-style="tall"] {
+            grid-column-start: span 1;
+            grid-column-end: span 1;
+            grid-row-start: span 2;
+            grid-row-end: span 2;
+        }
+
+        [item-style="x-tall"] {
+            grid-column-start: span 1;
+            grid-column-end: span 1;
+            grid-row-start: span 3;
+            grid-row-end: span 3;
+        }
+
+        [item-style="x-wide"] {
+            grid-column-start: span 3;
+            grid-column-end: span 3;
+            grid-row-start: span 1;
+            grid-row-end: span 1;
+        }
+    }
+
+    a {
+        height: 100%;
+    }
+
+    .service-name {
+        font-family: system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Oxygen,
+        Ubuntu,
+        Cantarell,
+        "Open Sans",
+        "Helvetica Neue",
+        sans-serif;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    .page-cta-wrapper {
+        height: 80vh;
+        width: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .page-cta {
+        height: 100%;
+        width: 100%;
+        background: rgb(0, 0, 0);
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+
+    .page-cta {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .cta-button {
+        padding: 15px;
+        border: 1px solid #f3f3f2;
+        background-color: transparent;
+        font-family: "Satoshi", sans-serif;
+        color: #f3f3f2;
+        cursor: pointer;
+        font-weight: 400;
+        font-size: 15px;
+        transition: all 0.5s ease-out;
+        border-radius: 7px;
+    }
+
+    .cta-button:hover {
+        background-color: white;
+        color: black;
+        border: 1px solid #f3f3f2;
+    }
+
+
+    .about-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 2em;
+    }
+    @media only screen and (max-width: 480px) {
+        .about-wrapper {
+            flex-direction: column;
+        }
+    }
+</style>
+</div>
+
+<div class="container" id="#about">
+    <h1 id="projects" style="text-align: center">About</h1>
+    <div class="spacer-block" style="height: 2em;"></div>
+    <div class="about-wrapper">
+        <div>
+            <img class="about-photographer-img" src="https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/home-about/hunter-img.webp?t=2024-10-08T14%3A27%3A54.510Z" alt="image of photographer" style="max-height: 20em; filter: grayscale(20%)">
+        </div>
+        <div class="description-text">
+            At <i>visualsbyhunter</i>, we capture more than just moments – we craft stories through the lens, blending a passion for photography with an artistic vision that transforms the ordinary into the extraordinary. Hunter, the creative force behind the brand, sees every shot as a canvas, where light, emotion, and perspective converge to create timeless visual art. Whether it's the subtle beauty of nature or the dynamic energy of an event, Hunter's work reflects a deep commitment to capturing the world in its most captivating form.
+        </div>
+    </div>
+
 </div>
 <FooterLayout/>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="/src/script/lenisScroll.js" defer></script>
+<script src="/src/script/cta-Animation.js" defer></script>
 <script>
-
 </script>
-
 </body>
 </html>

@@ -1,0 +1,462 @@
+---
+import "../styles/index.css";
+import FooterLayout from "../components/FooterComponent.astro";
+import "../styles/WorkGrid.css";
+import "../styles/page-load.css";
+const allWorkCards = await Astro.glob("../content/WorkGrid/*.md");
+import PricingCards from "../components/PricingCards.astro";
+import NavBar from "../components/NavBar.astro";
+import ThemeToggle from "../layouts/ThemeToggle.astro";
+import BrandTag from "../components/BrandTag.astro";
+import {Image} from "astro:assets";
+import PageLoader from "../components/PageLoader.astro";
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta
+            name="description"
+            content="Explore Hunter's stunning world of photography, showcasing the beauty of Nairobi, Kenya, and beyond. Through his lens, experience the vibrant landscapes, unforgettable wildlife, and compelling moments captured meticulously by this acclaimed local photographer."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Hunter | Home</title>
+    <link rel="manifest" href="/manifest.json"/>
+    <link
+            rel="icon"
+            type="image/svg+xml"
+            href="/assets/icons/hunter-logo.svg"
+    />
+
+</head>
+
+<body>
+<!-- <PageLoader/> -->
+<BrandTag/>
+<ThemeToggle/>
+<NavBar/>
+<div class="ImageGrid_wrapper">
+    <div class="page-styles w-embed">
+        <style>
+            @font-face {
+                font-family: 'Satoshi';
+                src: url('/fonts/Satoshi-Regular.woff2') format('woff2'),
+                url('/fonts/Satoshi-Regular.woff') format('woff'),
+                url('/fonts/Satoshi-Regular.ttf') format('truetype');
+                font-weight: 400;
+                font-style: normal;
+            }
+
+            /* Bold */
+            @font-face {
+                font-family: 'Satoshi';
+                src: url('/fonts/Satoshi-Bold.woff2') format('woff2'),
+                url('/fonts/Satoshi-Bold.woff') format('woff'),
+                url('/fonts/Satoshi-Bold.ttf') format('truetype');
+                font-weight: 700;
+                font-style: normal;
+            }
+
+            /* Italic */
+            @font-face {
+                font-family: 'Satoshi';
+                src: url('/fonts/Satoshi-Italic.woff2') format('woff2'),
+                url('/fonts/Satoshi-Italic.woff') format('woff'),
+                url('/fonts/Satoshi-Italic.ttf') format('truetype');
+                font-weight: 400;
+                font-style: italic;
+            }
+
+            /* Bold Italic */
+            @font-face {
+                font-family: 'Satoshi';
+                src: url('/fonts/Satoshi-BoldItalic.woff2') format('woff2'),
+                url('/fonts/Satoshi-BoldItalic.woff') format('woff'),
+                url('/fonts/Satoshi-BoldItalic.ttf') format('truetype');
+                font-weight: 700;
+                font-style: italic;
+            }
+
+            /* Light */
+            @font-face {
+                font-family: 'Satoshi';
+                src: url('/fonts/Satoshi-Light.woff2') format('woff2'),
+                url('/fonts/Satoshi-Light.woff') format('woff'),
+                url('/fonts/Satoshi-Light.ttf') format('truetype');
+                font-weight: 300;
+                font-style: normal;
+            }
+
+            body {
+                font-family: "Satoshi", sans-serif;
+                transition: all 0.4s ease-in-out;
+            }
+
+            .cta-button-primary {
+                font-weight: 400;
+                font-family: "Satoshi", sans-serif;
+                padding: 15px;
+                transition: all 0.5s ease-out;
+                background-color: white;
+                color: black;
+                border: 1px solid #f3f3f2;
+                border-radius: 7px;
+            }
+
+            .cta-button-primary:hover {
+
+
+            }
+
+            .description-text {
+                max-width: 500px;
+            }
+
+            @media screen and (min-width: 768px) {
+                [item-style="wide"] {
+                    grid-column-start: span 2;
+                    grid-column-end: span 2;
+                    grid-row-start: span 1;
+                    grid-row-end: span 1;
+                }
+
+                [item-style="tall"] {
+                    grid-column-start: span 1;
+                    grid-column-end: span 1;
+                    grid-row-start: span 2;
+                    grid-row-end: span 2;
+
+
+                    .page-cta-wrapper {
+                        background-repeat: no-repeat;
+                        background-size: cover !important;
+                    }
+                }
+
+                .w-webflow-badge {
+                    display: none !important;
+                }
+
+
+                .page-cta-wrapper {
+                    background-repeat: no-repeat;
+                    height: 85vh;
+                    width: 100%;
+                    border-radius: 10px;
+                    overflow: hidden;
+                }
+
+                .page-cta {
+                    height: 100%;
+                    width: 100%;
+                    background: rgb(0, 0, 0);
+                    background: rgba(0, 0, 0, 0.5);
+                }
+
+                .page-cta {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    gap: 20px;
+                }
+
+                .project-name {
+                    font-size: clamp(4rem, 0.4706rem + 11.7647vw, 8rem);
+                    font-family: satoshi, sans-serif;
+                    font-weight: 300;
+                }
+                @media only screen and (min-width: 1023px) {
+                    .project-name {
+                        font-size:8rem !important;
+                    }
+                }
+
+                .project-name {
+                    text-align: center;
+                }
+
+                .cta-button {
+                    padding: 15px;
+                    border: 1px solid #f3f3f2;
+                    background-color: transparent;
+                    font-family: "Satoshi", sans-serif;
+                    color: #f3f3f2;
+                    cursor: pointer;
+                    font-weight: 400;
+                    font-size: 15px;
+                    transition: all 0.5s ease-out;
+                    border-radius: 7px;
+                }
+
+
+                .cta-button:hover {
+                    background-color: white;
+                    color: black;
+                    border: 1px solid #f3f3f2;
+                }
+
+                /* Test CTA */
+                body.light .project-name {
+                    color: #f3f3f2;
+                }
+
+                //    lenis styles
+                html.lenis, html.lenis body {
+                    height: auto;
+                }
+
+                .lenis.lenis-smooth {
+                    scroll-behavior: auto !important;
+                }
+
+                .lenis.lenis-smooth [data-lenis-prevent] {
+                    overscroll-behavior: contain;
+                }
+
+                .lenis.lenis-stopped {
+                    overflow: hidden;
+                }
+
+                .lenis.lenis-smooth iframe {
+                    pointer-events: none;
+                }
+
+        </style>
+    </div>
+
+
+    <div class="container">
+        <div class="page-cta-wrapper" style="position: relative; opacity: 0;">
+            <img src="https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/isles-and-wedding-vows/wedding-cover.jpg?t=2024-10-02T13%3A55%3A58.194Z"
+                 alt="Cover image" style="height: 100%; width: 100%; object-fit: cover;" class="cover-image">
+
+            <!-- Overlay content -->
+            <div class="page-cta"
+                 style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; z-index: 1;">
+                <div class="project-name" style="color: white; font-size: 3rem; text-align: center;">
+                    Life's Stories Told Effortlessly
+                </div>
+                <div class="cta-button-wrapper" style="margin-top: 20px; text-align: center;">
+                    <button onclick="window.location.href='#gallery'" class="cta-button-primary">
+                        Contact Me
+                    </button>
+                    <button onclick="window.location.href='#projects'" class="cta-button">
+                        View Projects
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero_button-wrapper" style="display: none;">
+        <a href="tel:+25417712699" class="hero_button-cta"
+        >Contact Me&nbsp
+            <svg
+                    class="u_icon-arrow-2"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="10px"
+                    height="10px"
+                    viewBox="0 0 10.344 10.767"
+            >
+                <g
+                        "Group_3"
+                        data-name="Group 3"
+                        transform="translate(-282.783 -1330.75)"
+                >
+                    <path
+                            id="Path_1"
+                            data-name="Path 1"
+                            d="M24.93.5h9.315V9.815"
+                            transform="translate(258.133 1331)"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-miterlimit="10"
+                            stroke-width="3"></path>
+                    <line
+                            id="Line_1"
+                            data-name="Line 1"
+                            x1="9.051"
+                            y2="9.5"
+                            transform="translate(283.326 1331.5)"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-miterlimit="10"
+                            stroke-width="3"></line>
+                </g>
+            </svg>
+        </a>
+    </div>
+    <!-- Work-wrapper starts here -->
+    <div class="container">
+        <h1 id="projects">Featured Projects</h1>
+        <div class="spacer-block" style="height: 2em;"></div>
+        <div class="description-text">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque ea nam ratione vel velit! Aut consequatur dicta
+            earum explicabo, facilis illum iusto nemo quae, qui quis sint tempora. Incidunt, libero.
+        </div>
+        <div class="spacer-block" style="height: 2em;"></div>
+        <div class="work_wrapper w-dyn-list">
+            <div role="list" class="work_list w-dyn-items">
+                <!-- Hero card -->
+
+                {
+                    allWorkCards.map((content) => (
+
+                            <div
+                                    item-style="tall"
+                                    role="listitem"
+                                    class="work_item w-dyn-item "
+                                    onclick={`window.location.href='${content.frontmatter.route}'`}
+                            >
+                                <Image
+                                        src={content.frontmatter.image}
+                                        alt="Photos by Hunter"
+                                        width={300}
+                                        height={600}
+                                        class="work_image hero-fade"
+                                        widths={[240, 540, 720, content.frontmatter.image.width]}
+                                        sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${content.frontmatter.image.width}px`}
+                                />
+                                <a href={content.frontmatter.route}>
+                                    <div class="work_content-wrap">
+                                        <div class="work_date-wrap"/>
+                                        <div class="work_title-wrap">
+                                            <div class="work_title">
+                                                {content.frontmatter.title}
+                                            </div>
+                                            <div class="work_description">
+                                                {content.frontmatter.description}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                    ))
+                }
+                <!-- Hero card -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Work-wrapper ends here -->
+</div>
+<style>
+    .u_icon-arrow {
+        transform: rotate(135deg);
+    }
+
+    @media screen and (min-width: 768px) {
+        [item-style="wide"] {
+            grid-column-start: span 2;
+            grid-column-end: span 2;
+            grid-row-start: span 1;
+            grid-row-end: span 1;
+        }
+
+        [item-style="tall"] {
+            grid-column-start: span 1;
+            grid-column-end: span 1;
+            grid-row-start: span 2;
+            grid-row-end: span 2;
+        }
+
+        [item-style="x-tall"] {
+            grid-column-start: span 1;
+            grid-column-end: span 1;
+            grid-row-start: span 3;
+            grid-row-end: span 3;
+        }
+
+        [item-style="x-wide"] {
+            grid-column-start: span 3;
+            grid-column-end: span 3;
+            grid-row-start: span 1;
+            grid-row-end: span 1;
+        }
+    }
+
+    a {
+        height: 100%;
+    }
+
+    .service-name {
+        font-family: system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Oxygen,
+        Ubuntu,
+        Cantarell,
+        "Open Sans",
+        "Helvetica Neue",
+        sans-serif;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    .page-cta-wrapper {
+        height: 80vh;
+        width: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .page-cta {
+        height: 100%;
+        width: 100%;
+        background: rgb(0, 0, 0);
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+
+    .page-cta {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .cta-button {
+        padding: 15px;
+        border: 1px solid #f3f3f2;
+        background-color: transparent;
+        font-family: "Satoshi", sans-serif;
+        color: #f3f3f2;
+        cursor: pointer;
+        font-weight: 400;
+        font-size: 15px;
+        transition: all 0.5s ease-out;
+        border-radius: 7px;
+    }
+
+    .cta-button:hover {
+        background-color: white;
+        color: black;
+        border: 1px solid #f3f3f2;
+    }
+</style>
+</div>
+
+<div class="container" id="#about">
+    <h1 id="projects">About</h1>
+    <div class="spacer-block" style="height: 2em;"></div>
+    <div class="description-text">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque ea nam ratione vel velit! Aut consequatur dicta
+        earum explicabo, facilis illum iusto nemo quae, qui quis sint tempora.
+    </div>
+</div>
+<FooterLayout/>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="/src/script/lenisScroll.js" defer></script>
+<script src="/src/script/cta-Animation.js" defer></script>
+
+</body>
+</html>

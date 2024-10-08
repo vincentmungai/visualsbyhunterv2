@@ -1,0 +1,200 @@
+---
+import NavBar from "../../components/NavBar.astro";
+import ThemeToggle from "../../layouts/ThemeToggle.astro";
+import FooterComponent from "../../components/FooterComponent.astro";
+import ExpandIcon from "../../components/svgs/ExpandIcon.astro";
+import "../../styles/projectStyles.css"
+---
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+            name="viewport"
+    />
+    <meta content="ie=edge" http-equiv="X-UA-Compatible"/>
+    <title>Gallery | Hunter</title>
+    <link
+            rel="icon"
+            type="image/svg+xml"
+            href="/assets/icons/hunter-logo.svg"
+    />
+
+    <style>
+
+    </style>
+</head>
+<NavBar/>
+<ThemeToggle/>
+<body>
+<div class="container">
+    <div class="page-cta-wrapper" style="position: relative; opacity: 0;">
+        <img src="https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/enzo-restaurant/29.webp?t=2024-10-08T10%3A17%3A22.520Z"
+             alt="Cover image" style="height: 100%; width: 100%; object-fit: cover;" class="cover-image">
+
+        <!-- Overlay content -->
+        <div class="page-cta"
+             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; z-index: 1;">
+            <div class="project-name" style="color: white; font-size: 3rem; text-align: center;">
+                Nairobi's very own Japanese Restaurant
+            </div>
+            <div class="cta-button-wrapper" style="margin-top: 20px; text-align: center;">
+                <button onclick="window.location.href='#gallery'" class="cta-button">
+                    View Gallery
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h1>Overview</h1>
+    <div class="spacer-block" style="height: 1em"></div>
+    <div class="description-text">
+        Located in the heart of Nairobi, <i>Ezo Restaurant</i> offers a fresh take on Japanese cuisine, blending traditional flavors with a modern twist. As a Neo Japanese restaurant, they bring together authentic ingredients, innovative dishes, and a contemporary dining experience that transports guests into the world of refined culinary art. Whether it's a vibrant sushi platter or an intricate fusion creation, Ezo celebrates the art of Japanese cooking in a way that’s unique to Nairobi.
+
+        For <i>visualsbyhunter</i>, this project marked an exciting first — a shoot for a Japanese restaurant. From the moment we stepped into Ezo, we were greeted by an incredible team of staff who made the entire experience seamless and enjoyable. The environment was nothing short of spectacular, with a warm ambiance that perfectly complemented the stunning presentation of the food.
+
+        Capturing the essence of Ezo meant focusing on more than just the dishes. It was about highlighting the atmosphere, the artistry behind each plate, and the passion that the chefs pour into every meal. With a setting as vibrant and inviting as Ezo, the photography session was a true pleasure, and we left with a deep appreciation for both the food and the people who make it all happen.
+    </div>
+</div>
+<div class="container">
+    <div class="title-wrapper" id="gallery">
+        <h1>Gallery</h1>
+        <div class="spacer-block" style="height: 2em"></div>
+    </div>
+    <div class="gallery-wrapper">
+        <div class="img-wrapper">
+            <div class="gallery-item "
+                 style="background-image: url('https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/enzo-restaurant/15.webp')">
+                <div class="overlay open">
+                    <ExpandIcon class="expand-icon"/>
+                </div>
+            </div>
+            <dialog class="modal">
+                <img src="https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/enzo-restaurant/15.webp"
+                     alt=""
+                     class="modal-img open" loading="lazy">
+            </dialog>
+        </div>
+
+        <div class="img-wrapper">
+            <div class="gallery-item "
+                 style="background-image: url('https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/enzo-restaurant/16.webp')">
+                <div class="overlay open">
+                    <ExpandIcon class="expand-icon"/>
+                </div>
+            </div>
+            <dialog class="modal">
+                <img src="https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/enzo-restaurant/16.webp" alt=""
+                     class="modal-img open" loading="lazy">
+            </dialog>
+        </div>
+
+        <div class="img-wrapper">
+            <div class="gallery-item "
+                 style="background-image: url('https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/enzo-restaurant/21.webp')">
+                <div class="overlay open">
+                    <ExpandIcon class="expand-icon"/>
+                </div>
+            </div>
+            <dialog class="modal">
+                <img src="https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/enzo-restaurant/21.webp" alt=""
+                     class="modal-img open" loading="lazy">
+            </dialog>
+        </div>
+
+        <div class="img-wrapper">
+            <div class="gallery-item "
+                 style="background-image: url('https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/enzo-restaurant/27.webp')">
+                <div class="overlay open">
+                    <ExpandIcon class="expand-icon"/>
+                </div>
+            </div>
+            <dialog class="modal">
+                <img src="https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/enzo-restaurant/27.webp" alt=""
+                     class="modal-img open" loading="lazy">
+            </dialog>
+        </div>
+
+        <div class="img-wrapper">
+            <div class="gallery-item "
+                 style="background-image: url('https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/enzo-restaurant/31.webp')">
+                <div class="overlay open">
+                    <ExpandIcon class="expand-icon"/>
+                </div>
+            </div>
+            <dialog class="modal">
+                <img src="https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/enzo-restaurant/31.webp" alt=""
+                     class="modal-img open" loading="lazy">
+            </dialog>
+        </div>
+
+        <div class="img-wrapper">
+            <div class="gallery-item "
+                 style="background-image: url('https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/enzo-restaurant/32.webp')">
+                <div class="overlay open">
+                    <ExpandIcon class="expand-icon"/>
+                </div>
+            </div>
+            <dialog class="modal">
+                <img src="https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/enzo-restaurant/32.webp" alt=""
+                     class="modal-img open" loading="lazy">
+            </dialog>
+        </div>
+
+        <div class="img-wrapper">
+            <div class="gallery-item "
+                 style="background-image: url('https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/enzo-restaurant/38.webp')">
+                <div class="overlay open">
+                    <ExpandIcon class="expand-icon"/>
+                </div>
+            </div>
+            <dialog class="modal">
+                <img src="https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/enzo-restaurant/38.webp" alt=""
+                     class="modal-img open" loading="lazy">
+            </dialog>
+        </div>
+
+        <div class="img-wrapper">
+            <div class="gallery-item "
+                 style="background-image: url('https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/enzo-restaurant/34.webp')">
+                <div class="overlay open">
+                    <ExpandIcon class="expand-icon"/>
+                </div>
+            </div>
+            <dialog class="modal">
+                <img src="https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/enzo-restaurant/34.webp" alt=""
+                     class="modal-img open" loading="lazy">
+            </dialog>
+        </div>
+
+        <div class="img-wrapper">
+            <div class="gallery-item "
+                 style="background-image: url('https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/enzo-restaurant/37.webp')">
+                <div class="overlay open">
+                    <ExpandIcon class="expand-icon"/>
+                </div>
+            </div>
+            <dialog class="modal">
+                <img src="https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/enzo-restaurant/37.webp" alt=""
+                     class="modal-img open" loading="lazy">
+            </dialog>
+        </div>
+
+    </div>
+    <script defer>
+
+    </script>
+</div>
+<FooterComponent/>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script src="/src/script/lenisScroll.js" defer></script>
+<script src="../../script/cta-Animation.js">
+</script>
+
+</body>
+
+</html>

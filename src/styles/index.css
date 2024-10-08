@@ -24,7 +24,7 @@
     --colors-sand12: hsl(50, 6.0%, 10.0%);
     --gutter: 15px;
     --global-radius: 25px;
-    --rounded-radius: 100vw;
+    --rounded-radius: 7px;
     --g_transition: 0.4s;
 }
 
@@ -43,9 +43,6 @@ body {
     background-color: hsl(59, 6.5%, 95.1%);
 }
 
-.ImageGrid_wrapper {
-    margin-top: 2em;
-}
 
 h1 {
     color: black;
