@@ -28,7 +28,9 @@ import PageLoader from "../components/PageLoader.astro";
             type="image/svg+xml"
             href="/assets/icons/hunter-logo.svg"
     />
-
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
 </head>
 
 <body>
@@ -168,9 +170,10 @@ import PageLoader from "../components/PageLoader.astro";
                     font-family: satoshi, sans-serif;
                     font-weight: 300;
                 }
+
                 @media only screen and (min-width: 1023px) {
                     .project-name {
-                        font-size:8rem !important;
+                        font-size: 8rem !important;
                     }
                 }
 
@@ -294,7 +297,10 @@ import PageLoader from "../components/PageLoader.astro";
         <h1 id="projects">Featured Projects</h1>
         <div class="spacer-block" style="height: 2em;"></div>
         <div class="description-text">
-            Explore a curated collection of Hunter's most distinguished work. Each project is a reflection of our unique approach to photography, where creativity meets precision. From breathtaking landscapes to intimate portraits, these featured projects represent the heart of visualsbyhunter's passion for capturing life's most compelling moments.
+            Explore a curated collection of Hunter's most distinguished work. Each project is a reflection of our unique
+            approach to photography, where creativity meets precision. From breathtaking landscapes to intimate
+            portraits, these featured projects represent the heart of visualsbyhunter's passion for capturing life's
+            most compelling moments.
         </div>
         <div class="spacer-block" style="height: 2em;"></div>
         <div class="work_wrapper w-dyn-list">
@@ -449,6 +455,7 @@ import PageLoader from "../components/PageLoader.astro";
         align-items: center;
         gap: 2em;
     }
+
     @media only screen and (max-width: 480px) {
         .about-wrapper {
             flex-direction: column;
@@ -462,17 +469,22 @@ import PageLoader from "../components/PageLoader.astro";
     <div class="spacer-block" style="height: 2em;"></div>
     <div class="about-wrapper">
         <div>
-            <img class="about-photographer-img" src="https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/home-about/about.webp" alt="image of photographer" style="max-height: 20em; filter: grayscale(20%)">
+            <img class="about-photographer-img"
+                 src="https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/home-about/about.webp"
+                 alt="image of photographer" style="max-height: 20em; filter: grayscale(20%)">
         </div>
         <div class="description-text">
-            At <i>visualsbyhunter</i>, we capture more than just moments – we craft stories through the lens, blending a passion for photography with an artistic vision that transforms the ordinary into the extraordinary. Hunter, the creative force behind the brand, sees every shot as a canvas, where light, emotion, and perspective converge to create timeless visual art. Whether it's the subtle beauty of nature or the dynamic energy of an event, Hunter's work reflects a deep commitment to capturing the world in its most captivating form.
+            At <i>visualsbyhunter</i>, we capture more than just moments – we craft stories through the lens, blending a
+            passion for photography with an artistic vision that transforms the ordinary into the extraordinary. Hunter,
+            the creative force behind the brand, sees every shot as a canvas, where light, emotion, and perspective
+            converge to create timeless visual art. Whether it's the subtle beauty of nature or the dynamic energy of an
+            event, Hunter's work reflects a deep commitment to capturing the world in its most captivating form.
         </div>
     </div>
 
 </div>
 <FooterLayout/>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
-<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+
 <script src="/src/script/cta-Animation.js" defer></script>
 <script is:inline>
     document.addEventListener('DOMContentLoaded', () => {
@@ -508,22 +520,22 @@ import PageLoader from "../components/PageLoader.astro";
         gsap.set(".animated-button", {opacity: 0, y: 100});
         gsap.set(".page-cta-wrapper", {opacity: 0, scale: .9});
         // Create a timeline
-        const tl = gsap.timeline({
+        const loadTl = gsap.timeline({
             defaults: {
                 duration: 1, // Default duration for each animation
                 ease: "power1.out"
             }
         });
-        tl.to(".page-cta-wrapper", {opacity: 1, scale: 1, duration: 1, delay: 1});
+        loadTl.to(".page-cta-wrapper", {opacity: 1, scale: 1, duration: 1, delay: 1});
         // Animate the .page-cta opacity from 0 to 1 and slide it into view
-        tl.to(".project-name", {
+        loadTl.to(".project-name", {
 
             opacity: 1,
             y: 0,
             duration: 1,
             ease: "power2.out"
         });
-        tl.to(".animated-button", {
+        loadTl.to(".animated-button", {
             opacity: 1,
             y: 0,
             duration: 1,
@@ -532,7 +544,7 @@ import PageLoader from "../components/PageLoader.astro";
         }, "<55%");
 
 
-        tl.to(".cover-image", {
+        loadTl.to(".cover-image", {
             scale: 1.5,
             duration: 120,
             yoyo: true,
@@ -591,5 +603,32 @@ import PageLoader from "../components/PageLoader.astro";
 
 
 </script>
+<script is:inline>
+   /* document.addEventListener('DOMContentLoaded', function () {
+        // Register the ScrollTrigger plugin
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Create a scroll-triggered timeline
+        const scrollTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.work_item', // The container of your work items
+                start: 'top center',
+                end: 'bottom bottom',
+                scrub: true,
+                markers: true
+            }
+        });
+
+        // Animate each work item when it enters the viewport
+        scrollTl.from('.work_item', {
+            opacity: 0,
+            y:100,
+            stagger: {each: 0.4},
+            duration: 3,   // Adjusted duration for better responsiveness
+            ease: 'power1.out',
+        });
+    });*/
+</script>
+
 </body>
 </html>
