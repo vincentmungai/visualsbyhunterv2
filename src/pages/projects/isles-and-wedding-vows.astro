@@ -1,5 +1,4 @@
 ---
-import fetchworks from "../../lib/fetchWorks";
 import { media } from "@wix/sdk";
 import NavBar from "../../components/NavBar.astro";
 import ThemeToggle from "../../layouts/ThemeToggle.astro";
@@ -7,28 +6,10 @@ import FooterComponent from "../../components/FooterComponent.astro";
 import ExpandIcon from "../../components/svgs/ExpandIcon.astro";
 import "../../styles/projectStyles.css";
 
-// Ensure the page is prerendered at build time for better performance and SEO
-export const prerender = true;
+import fetchworks from "../../lib/fetchWorks";
+const works = await fetchworks();
 
-// Static paths generation for each work item based on slug
-export async function getStaticPaths() {
-    try {
-        const works = await fetchworks();
-        return works.map((work) => ({
-            params: {
-                slug: work.data.slug,
-            },
-            props: {
-                workData: work.data
-            }
-        }));
-    } catch (error) {
-        console.error("Error fetching works:", error);
-        return [];
-    }
-}
-
-const { workData } = Astro.props;
+const title = works[0].data.slug;
 
 ---
 
@@ -40,7 +21,7 @@ const { workData } = Astro.props;
             name="viewport"
     />
     <meta content="ie=edge" http-equiv="X-UA-Compatible"/>
-    <title>Gallery | Hunter</title>
+    <title>Hunter | { title }</title>
     <link
             rel="icon"
             type="image/svg+xml"
@@ -50,6 +31,19 @@ const { workData } = Astro.props;
     <style>
 
     </style>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const slug = '{slug}'; // This will be replaced with the actual slug value from the Astro frontmatter.
+            const newURL = `/projects/${slug}`; // Ensure correct URL structure with the slug value
+
+            // Check if the current URL is different from the desired URL
+            if (window.location.pathname !== newURL) {
+                history.pushState({}, '', newURL);  // Update the URL without refreshing the page
+            }
+        });
+
+    </script>
 </head>
 <NavBar/>
 <ThemeToggle/>
@@ -57,13 +51,13 @@ const { workData } = Astro.props;
 
 <div class="container">
     <div class="page-cta-wrapper" style="position: relative; opacity: 0;">
-        <img src={workData?.featuredImage ? media.getImageUrl(workData.featuredImage).url : ''} alt="Cover image" style="height: 100%; width: 100%; object-fit: cover;" class="cover-image">
+        <img src={media.getImageUrl(works[0].data.featuredImage).url} alt="Cover image" style="height: 100%; width: 100%; object-fit: cover;" class="cover-image">
 
         <!-- Overlay content -->
         <div class="page-cta"
              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; z-index: 1;">
             <div class="project-name" style="color: white; font-size: 3rem; text-align: center;">
-                { workData.heroText }
+                { works[0].data.heroText }
             </div>
             <div class="cta-button-wrapper" style="margin-top: 20px; text-align: center;">
                 <button onclick="window.location.href='#gallery'" class="cta-button">
@@ -78,7 +72,7 @@ const { workData } = Astro.props;
     <h1>Overview</h1>
     <div class="spacer-block" style="height: 1em"></div>
     <div class="description-text">
-        <div set:html={ workData.projectOverview } />
+        <div set:html={ works[0].data.projectOverview } />
     </div>
     <div class="container">
         <div class="title-wrapper" id="gallery">
@@ -88,13 +82,13 @@ const { workData } = Astro.props;
         <div class="gallery-wrapper">
             <div class="img-wrapper">
                 <div class="gallery-item">
-                    <img src={media.getImageUrl(workData.mediagallery[0].src).url} alt="captured by hunter" class="open"/>
+                    <img src={media.getImageUrl(works[0].data.mediagallery[0].src).url} alt="captured by hunter" class="open"/>
                     <div class="overlay open">
                         <ExpandIcon class="expand-icon"/>
                     </div>
                 </div>
                 <dialog class="modal">
-                    <img src={media.getImageUrl(workData.mediagallery[0].src).url}
+                    <img src={media.getImageUrl(works[0].data.mediagallery[0].src).url}
                          alt=""
                          class="modal-img open" loading="lazy">
                 </dialog>
@@ -102,13 +96,13 @@ const { workData } = Astro.props;
 
             <div class="img-wrapper">
                 <div class="gallery-item">
-                    <img src={media.getImageUrl(workData.mediagallery[1].src).url} alt="captured by hunter" class="open"/>
+                    <img src={media.getImageUrl(works[0].data.mediagallery[1].src).url} alt="captured by hunter" class="open"/>
                     <div class="overlay open">
                         <ExpandIcon class="expand-icon"/>
                     </div>
                 </div>
                 <dialog class="modal">
-                    <img src={media.getImageUrl(workData.mediagallery[1].src).url}
+                    <img src={media.getImageUrl(works[0].data.mediagallery[1].src).url}
                          alt=""
                          class="modal-img open" loading="lazy">
                 </dialog>
@@ -116,13 +110,13 @@ const { workData } = Astro.props;
 
             <div class="img-wrapper">
                 <div class="gallery-item">
-                    <img src={media.getImageUrl(workData.mediagallery[2].src).url} alt="captured by hunter" class="open"/>
+                    <img src={media.getImageUrl(works[0].data.mediagallery[2].src).url} alt="captured by hunter" class="open"/>
                     <div class="overlay open">
                         <ExpandIcon class="expand-icon"/>
                     </div>
                 </div>
                 <dialog class="modal">
-                    <img src={media.getImageUrl(workData.mediagallery[2].src).url}
+                    <img src={media.getImageUrl(works[0].data.mediagallery[2].src).url}
                          alt=""
                          class="modal-img open" loading="lazy">
                 </dialog>
@@ -130,13 +124,13 @@ const { workData } = Astro.props;
 
             <div class="img-wrapper">
                 <div class="gallery-item">
-                    <img src={media.getImageUrl(workData.mediagallery[3].src).url} alt="captured by hunter" class="open"/>
+                    <img src={media.getImageUrl(works[0].data.mediagallery[3].src).url} alt="captured by hunter" class="open"/>
                     <div class="overlay open">
                         <ExpandIcon class="expand-icon"/>
                     </div>
                 </div>
                 <dialog class="modal">
-                    <img src={media.getImageUrl(workData.mediagallery[3].src).url}
+                    <img src={media.getImageUrl(works[0].data.mediagallery[3].src).url}
                          alt=""
                          class="modal-img open" loading="lazy">
                 </dialog>
@@ -144,13 +138,13 @@ const { workData } = Astro.props;
 
             <div class="img-wrapper">
                 <div class="gallery-item">
-                    <img src={media.getImageUrl(workData.mediagallery[4].src).url} alt="captured by hunter" class="open"/>
+                    <img src={media.getImageUrl(works[0].data.mediagallery[4].src).url} alt="captured by hunter" class="open"/>
                     <div class="overlay open">
                         <ExpandIcon class="expand-icon"/>
                     </div>
                 </div>
                 <dialog class="modal">
-                    <img src={media.getImageUrl(workData.mediagallery[4].src).url}
+                    <img src={media.getImageUrl(works[0].data.mediagallery[4].src).url}
                          alt=""
                          class="modal-img open" loading="lazy">
                 </dialog>
@@ -158,13 +152,13 @@ const { workData } = Astro.props;
 
             <div class="img-wrapper">
                 <div class="gallery-item">
-                    <img src={media.getImageUrl(workData.mediagallery[5].src).url} alt="captured by hunter" class="open"/>
+                    <img src={media.getImageUrl(works[0].data.mediagallery[5].src).url} alt="captured by hunter" class="open"/>
                     <div class="overlay open">
                         <ExpandIcon class="expand-icon"/>
                     </div>
                 </div>
                 <dialog class="modal">
-                    <img src={media.getImageUrl(workData.mediagallery[5].src).url}
+                    <img src={media.getImageUrl(works[0].data.mediagallery[5].src).url}
                          alt=""
                          class="modal-img open" loading="lazy">
                 </dialog>
@@ -172,13 +166,13 @@ const { workData } = Astro.props;
 
             <div class="img-wrapper">
                 <div class="gallery-item">
-                    <img src={media.getImageUrl(workData.mediagallery[6].src).url} alt="captured by hunter" class="open"/>
+                    <img src={media.getImageUrl(works[0].data.mediagallery[6].src).url} alt="captured by hunter" class="open"/>
                     <div class="overlay open">
                         <ExpandIcon class="expand-icon"/>
                     </div>
                 </div>
                 <dialog class="modal">
-                    <img src={media.getImageUrl(workData.mediagallery[6].src).url}
+                    <img src={media.getImageUrl(works[0].data.mediagallery[6].src).url}
                          alt=""
                          class="modal-img open" loading="lazy">
                 </dialog>
@@ -186,13 +180,13 @@ const { workData } = Astro.props;
 
             <div class="img-wrapper">
                 <div class="gallery-item">
-                    <img src={media.getImageUrl(workData.mediagallery[7].src).url} alt="captured by hunter" class="open"/>
+                    <img src={media.getImageUrl(works[0].data.mediagallery[7].src).url} alt="captured by hunter" class="open"/>
                     <div class="overlay open">
                         <ExpandIcon class="expand-icon"/>
                     </div>
                 </div>
                 <dialog class="modal">
-                    <img src={media.getImageUrl(workData.mediagallery[7].src).url}
+                    <img src={media.getImageUrl(works[0].data.mediagallery[7].src).url}
                          alt=""
                          class="modal-img open" loading="lazy">
                 </dialog>
@@ -200,13 +194,13 @@ const { workData } = Astro.props;
 
             <div class="img-wrapper">
                 <div class="gallery-item">
-                    <img src={media.getImageUrl(workData.mediagallery[8].src).url} alt="captured by hunter" class="open"/>
+                    <img src={media.getImageUrl(works[0].data.mediagallery[8].src).url} alt="captured by hunter" class="open"/>
                     <div class="overlay open">
                         <ExpandIcon class="expand-icon"/>
                     </div>
                 </div>
                 <dialog class="modal">
-                    <img src={media.getImageUrl(workData.mediagallery[8].src).url}
+                    <img src={media.getImageUrl(works[0].data.mediagallery[8].src).url}
                          alt=""
                          class="modal-img open" loading="lazy">
                 </dialog>
