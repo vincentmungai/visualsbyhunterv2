@@ -3,17 +3,21 @@ import "../styles/index.css";
 import FooterLayout from "../components/FooterComponent.astro";
 import "../styles/WorkGrid.css";
 import "../styles/page-load.css";
+const allWorkCards = await Astro.glob("../content/WorkGrid/*.md");
+import PricingCards from "../components/PricingCards.astro";
 import NavBar from "../components/NavBar.astro";
 import ThemeToggle from "../layouts/ThemeToggle.astro";
 import BrandTag from "../components/BrandTag.astro";
+import PageLoader from "../components/PageLoader.astro";
 // CMS added
-import fetchWorksItems from "../lib/fetchWorksItems";
-const works = await fetchWorksItems();
+import fetchworks from "../lib/fetchWorks";
+const works = await fetchworks();
 
 
 import fetchHomeLayout from "../lib/fetchHomeLayout";
 const homeLayout = await fetchHomeLayout();
 console.log(homeLayout[0].data.image);
+
 ---
 
 <!doctype html>
@@ -32,9 +36,9 @@ console.log(homeLayout[0].data.image);
             type="image/svg+xml"
             href="/assets/icons/hunter-logo.svg"
     />
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer is:inline></script>
-    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer is:inline></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer is:inline></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
 </head>
 
 <body>
@@ -230,7 +234,7 @@ console.log(homeLayout[0].data.image);
                 .lenis.lenis-smooth iframe {
                     pointer-events: none;
                 }
-            }
+
         </style>
     </div>
 
@@ -462,6 +466,7 @@ console.log(homeLayout[0].data.image);
         }
     }
 </style>
+</div>
 
 <div class="container" id="about">
     <h1 id="projects" style="text-align: center">About</h1>
@@ -484,7 +489,7 @@ console.log(homeLayout[0].data.image);
 </div>
 <FooterLayout/>
 
-<script src="/src/script/cta-Animation.js" defer is:inline></script>
+<script src="/src/script/cta-Animation.js" defer></script>
 <script is:inline>
     document.addEventListener('DOMContentLoaded', () => {
 
@@ -603,30 +608,30 @@ console.log(homeLayout[0].data.image);
 
 </script>
 <script is:inline>
-   /* document.addEventListener('DOMContentLoaded', function () {
-        // Register the ScrollTrigger plugin
-        gsap.registerPlugin(ScrollTrigger);
+    /* document.addEventListener('DOMContentLoaded', function () {
+         // Register the ScrollTrigger plugin
+         gsap.registerPlugin(ScrollTrigger);
 
-        // Create a scroll-triggered timeline
-        const scrollTl = gsap.timeline({
-            scrollTrigger: {
-                trigger: '.work_item', // The container of your work items
-                start: 'top center',
-                end: 'bottom bottom',
-                scrub: true,
-                markers: true
-            }
-        });
+         // Create a scroll-triggered timeline
+         const scrollTl = gsap.timeline({
+             scrollTrigger: {
+                 trigger: '.work_item', // The container of your work items
+                 start: 'top center',
+                 end: 'bottom bottom',
+                 scrub: true,
+                 markers: true
+             }
+         });
 
-        // Animate each work item when it enters the viewport
-        scrollTl.from('.work_item', {
-            opacity: 0,
-            y:100,
-            stagger: {each: 0.4},
-            duration: 3,   // Adjusted duration for better responsiveness
-            ease: 'power1.out',
-        });
-    });*/
+         // Animate each work item when it enters the viewport
+         scrollTl.from('.work_item', {
+             opacity: 0,
+             y:100,
+             stagger: {each: 0.4},
+             duration: 3,   // Adjusted duration for better responsiveness
+             ease: 'power1.out',
+         });
+     });*/
 </script>
 
 </body>

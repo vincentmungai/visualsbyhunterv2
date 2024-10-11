@@ -1,9 +1,9 @@
 ---
-import fetchWorksItems from "../../lib/fetchWorksItems";
-const works = await fetchWorksItems();
-export const    prerender = true;
+import fetchworks from "../../lib/fetchWorks";
+const works = await fetchworks();
+export const prerender = true;
 export async function getStaticPaths() {
-    const works = await fetchWorksItems();
+    const works = await fetchworks();
     return works.map((work) => ({
         params: {
             slug: work.data.slug,
@@ -13,16 +13,16 @@ export async function getStaticPaths() {
         }
     }))
 }
-console.log(works);
 const {workData} = Astro.props;
-import {media} from "@wix/sdk";
+import {media} from "@wix/sdk";/*
+console.log(media.getImageUrl(workData.featuredImage).url);
+console.log(media.getImageUrl(workData.mediagallery[1].src).url);*/
 
 import NavBar from "../../components/NavBar.astro";
 import ThemeToggle from "../../layouts/ThemeToggle.astro";
 import FooterComponent from "../../components/FooterComponent.astro";
 import ExpandIcon from "../../components/svgs/ExpandIcon.astro";
 import "../../styles/projectStyles.css"
-
 ---
 <html lang="en">
 <head>
@@ -39,6 +39,9 @@ import "../../styles/projectStyles.css"
             href="/assets/icons/hunter-logo.svg"
     />
 
+    <style>
+
+    </style>
 </head>
 <NavBar/>
 <ThemeToggle/>
@@ -68,148 +71,151 @@ import "../../styles/projectStyles.css"
     <div class="spacer-block" style="height: 1em"></div>
     <div class="description-text">
         <div set:html={ workData.projectOverview } />
-</div>
-<div class="container">
-    <div class="title-wrapper" id="gallery">
-        <h1>Gallery</h1>
-        <div class="spacer-block" style="height: 2em"></div>
     </div>
-    <div class="gallery-wrapper">
-        <div class="img-wrapper">
-            <div class="gallery-item">
-                <img src={media.getImageUrl(workData.mediagallery[0].src).url} alt="captured by hunter" class="open"/>
-                <div class="overlay open">
-                    <ExpandIcon class="expand-icon"/>
-                </div>
-            </div>
-            <dialog class="modal">
-                <img src={media.getImageUrl(workData.mediagallery[0].src).url}
-                     alt=""
-                     class="modal-img open" loading="lazy">
-            </dialog>
+    <div class="container">
+        <div class="title-wrapper" id="gallery">
+            <h1>Gallery</h1>
+            <div class="spacer-block" style="height: 2em"></div>
         </div>
-
-        <div class="img-wrapper">
-            <div class="gallery-item">
-                <img src={media.getImageUrl(workData.mediagallery[1].src).url} alt="captured by hunter" class="open"/>
-                <div class="overlay open">
-                    <ExpandIcon class="expand-icon"/>
+        <div class="gallery-wrapper">
+            <div class="img-wrapper">
+                <div class="gallery-item">
+                    <img src={media.getImageUrl(workData.mediagallery[0].src).url} alt="captured by hunter" class="open"/>
+                    <div class="overlay open">
+                        <ExpandIcon class="expand-icon"/>
+                    </div>
                 </div>
+                <dialog class="modal">
+                    <img src={media.getImageUrl(workData.mediagallery[0].src).url}
+                         alt=""
+                         class="modal-img open" loading="lazy">
+                </dialog>
             </div>
-            <dialog class="modal">
-                <img src={media.getImageUrl(workData.mediagallery[1].src).url}
-                     alt=""
-                     class="modal-img open" loading="lazy">
-            </dialog>
-        </div>
 
-        <div class="img-wrapper">
-            <div class="gallery-item">
-                <img src={media.getImageUrl(workData.mediagallery[2].src).url} alt="captured by hunter" class="open"/>
-                <div class="overlay open">
-                    <ExpandIcon class="expand-icon"/>
+            <div class="img-wrapper">
+                <div class="gallery-item">
+                    <img src={media.getImageUrl(workData.mediagallery[1].src).url} alt="captured by hunter" class="open"/>
+                    <div class="overlay open">
+                        <ExpandIcon class="expand-icon"/>
+                    </div>
                 </div>
+                <dialog class="modal">
+                    <img src={media.getImageUrl(workData.mediagallery[1].src).url}
+                         alt=""
+                         class="modal-img open" loading="lazy">
+                </dialog>
             </div>
-            <dialog class="modal">
-                <img src={media.getImageUrl(workData.mediagallery[2].src).url}
-                     alt=""
-                     class="modal-img open" loading="lazy">
-            </dialog>
-        </div>
 
-        <div class="img-wrapper">
-            <div class="gallery-item">
-                <img src={media.getImageUrl(workData.mediagallery[3].src).url} alt="captured by hunter" class="open"/>
-                <div class="overlay open">
-                    <ExpandIcon class="expand-icon"/>
+            <div class="img-wrapper">
+                <div class="gallery-item">
+                    <img src={media.getImageUrl(workData.mediagallery[2].src).url} alt="captured by hunter" class="open"/>
+                    <div class="overlay open">
+                        <ExpandIcon class="expand-icon"/>
+                    </div>
                 </div>
+                <dialog class="modal">
+                    <img src={media.getImageUrl(workData.mediagallery[2].src).url}
+                         alt=""
+                         class="modal-img open" loading="lazy">
+                </dialog>
             </div>
-            <dialog class="modal">
-                <img src={media.getImageUrl(workData.mediagallery[3].src).url}
-                     alt=""
-                     class="modal-img open" loading="lazy">
-            </dialog>
-        </div>
 
-        <div class="img-wrapper">
-            <div class="gallery-item">
-                <img src={media.getImageUrl(workData.mediagallery[4].src).url} alt="captured by hunter" class="open"/>
-                <div class="overlay open">
-                    <ExpandIcon class="expand-icon"/>
+            <div class="img-wrapper">
+                <div class="gallery-item">
+                    <img src={media.getImageUrl(workData.mediagallery[3].src).url} alt="captured by hunter" class="open"/>
+                    <div class="overlay open">
+                        <ExpandIcon class="expand-icon"/>
+                    </div>
                 </div>
+                <dialog class="modal">
+                    <img src={media.getImageUrl(workData.mediagallery[3].src).url}
+                         alt=""
+                         class="modal-img open" loading="lazy">
+                </dialog>
             </div>
-            <dialog class="modal">
-                <img src={media.getImageUrl(workData.mediagallery[4].src).url}
-                     alt=""
-                     class="modal-img open" loading="lazy">
-            </dialog>
-        </div>
 
-        <div class="img-wrapper">
-            <div class="gallery-item">
-                <img src={media.getImageUrl(workData.mediagallery[5].src).url} alt="captured by hunter" class="open"/>
-                <div class="overlay open">
-                    <ExpandIcon class="expand-icon"/>
+            <div class="img-wrapper">
+                <div class="gallery-item">
+                    <img src={media.getImageUrl(workData.mediagallery[4].src).url} alt="captured by hunter" class="open"/>
+                    <div class="overlay open">
+                        <ExpandIcon class="expand-icon"/>
+                    </div>
                 </div>
+                <dialog class="modal">
+                    <img src={media.getImageUrl(workData.mediagallery[4].src).url}
+                         alt=""
+                         class="modal-img open" loading="lazy">
+                </dialog>
             </div>
-            <dialog class="modal">
-                <img src={media.getImageUrl(workData.mediagallery[5].src).url}
-                     alt=""
-                     class="modal-img open" loading="lazy">
-            </dialog>
-        </div>
 
-        <div class="img-wrapper">
-            <div class="gallery-item">
-                <img src={media.getImageUrl(workData.mediagallery[6].src).url} alt="captured by hunter" class="open"/>
-                <div class="overlay open">
-                    <ExpandIcon class="expand-icon"/>
+            <div class="img-wrapper">
+                <div class="gallery-item">
+                    <img src={media.getImageUrl(workData.mediagallery[5].src).url} alt="captured by hunter" class="open"/>
+                    <div class="overlay open">
+                        <ExpandIcon class="expand-icon"/>
+                    </div>
                 </div>
+                <dialog class="modal">
+                    <img src={media.getImageUrl(workData.mediagallery[5].src).url}
+                         alt=""
+                         class="modal-img open" loading="lazy">
+                </dialog>
             </div>
-            <dialog class="modal">
-                <img src={media.getImageUrl(workData.mediagallery[6].src).url}
-                     alt=""
-                     class="modal-img open" loading="lazy">
-            </dialog>
-        </div>
 
-        <div class="img-wrapper">
-            <div class="gallery-item">
-                <img src={media.getImageUrl(workData.mediagallery[7].src).url} alt="captured by hunter" class="open"/>
-                <div class="overlay open">
-                    <ExpandIcon class="expand-icon"/>
+            <div class="img-wrapper">
+                <div class="gallery-item">
+                    <img src={media.getImageUrl(workData.mediagallery[6].src).url} alt="captured by hunter" class="open"/>
+                    <div class="overlay open">
+                        <ExpandIcon class="expand-icon"/>
+                    </div>
                 </div>
+                <dialog class="modal">
+                    <img src={media.getImageUrl(workData.mediagallery[6].src).url}
+                         alt=""
+                         class="modal-img open" loading="lazy">
+                </dialog>
             </div>
-            <dialog class="modal">
-                <img src={media.getImageUrl(workData.mediagallery[7].src).url}
-                     alt=""
-                     class="modal-img open" loading="lazy">
-            </dialog>
-        </div>
 
-        <div class="img-wrapper">
-            <div class="gallery-item">
-                <img src={media.getImageUrl(workData.mediagallery[8].src).url} alt="captured by hunter" class="open"/>
-                <div class="overlay open">
-                    <ExpandIcon class="expand-icon"/>
+            <div class="img-wrapper">
+                <div class="gallery-item">
+                    <img src={media.getImageUrl(workData.mediagallery[7].src).url} alt="captured by hunter" class="open"/>
+                    <div class="overlay open">
+                        <ExpandIcon class="expand-icon"/>
+                    </div>
                 </div>
+                <dialog class="modal">
+                    <img src={media.getImageUrl(workData.mediagallery[7].src).url}
+                         alt=""
+                         class="modal-img open" loading="lazy">
+                </dialog>
             </div>
-            <dialog class="modal">
-                <img src={media.getImageUrl(workData.mediagallery[8].src).url}
-                     alt=""
-                     class="modal-img open" loading="lazy">
-            </dialog>
-        </div>
 
+            <div class="img-wrapper">
+                <div class="gallery-item">
+                    <img src={media.getImageUrl(workData.mediagallery[8].src).url} alt="captured by hunter" class="open"/>
+                    <div class="overlay open">
+                        <ExpandIcon class="expand-icon"/>
+                    </div>
+                </div>
+                <dialog class="modal">
+                    <img src={media.getImageUrl(workData.mediagallery[8].src).url}
+                         alt=""
+                         class="modal-img open" loading="lazy">
+                </dialog>
+            </div>
+
+        </div>
+        <script defer>
+
+        </script>
     </div>
-</div>
-<FooterComponent/>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer is:inline></script>
-<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer is:inline></script>
-<script src="/src/script/lenisScroll.js" defer></script>
-<script src="../../script/cta-Animation.js">
-</script>
+    <FooterComponent/>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+    <script src="/src/script/lenisScroll.js" defer></script>
+    <script src="../../script/cta-Animation.js">
+    </script>
 
-</div></body>
+</body>
 
 </html>
