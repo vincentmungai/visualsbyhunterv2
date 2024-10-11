@@ -1,6 +1,5 @@
 ---
 import fetchworks from "../../lib/fetchWorks";
-const works = await fetchworks();
 export const prerender = true;
 export async function getStaticPaths() {
     const works = await fetchworks();
@@ -14,10 +13,7 @@ export async function getStaticPaths() {
     }))
 }
 const {workData} = Astro.props;
-import {media} from "@wix/sdk";/*
-console.log(media.getImageUrl(workData.featuredImage).url);
-console.log(media.getImageUrl(workData.mediagallery[1].src).url);*/
-
+import {media} from "@wix/sdk";
 import NavBar from "../../components/NavBar.astro";
 import ThemeToggle from "../../layouts/ThemeToggle.astro";
 import FooterComponent from "../../components/FooterComponent.astro";
