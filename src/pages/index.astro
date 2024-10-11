@@ -16,7 +16,7 @@ const works = await fetchworks();
 
 import fetchHomeLayout from "../lib/fetchHomeLayout";
 const homeLayout = await fetchHomeLayout();
-console.log(homeLayout[0].data.image);
+console.log(works);
 
 ---
 
@@ -234,7 +234,7 @@ console.log(homeLayout[0].data.image);
                 .lenis.lenis-smooth iframe {
                     pointer-events: none;
                 }
-
+            }
         </style>
     </div>
 
@@ -316,28 +316,28 @@ console.log(homeLayout[0].data.image);
                 <!-- Hero card -->
 
                 {
-                    works.map((content) => (
+                    works.map((work) => (
 
                             <div
                                     item-style="tall"
                                     role="listitem"
                                     class="work_item w-dyn-item "
-                                    onclick={`window.location.href='/projects/${content.data.slug}'`}
+                                    onclick={`window.location.href='/projects/${work.data.slug}'`}
                             >
                                 <img
-                                        src={content.data.url}
+                                        src={work.data.url}
                                         alt="Photos by Hunter"
                                         class="work_image hero-fade"
                                 />
-                                <a href={`/projects/${content.data.slug}`}>
+                                <a href={`/projects/${work.data.slug}`}>
                                     <div class="work_content-wrap">
                                         <div class="work_date-wrap"/>
                                         <div class="work_title-wrap">
                                             <div class="work_title">
-                                                {content.data.title}
+                                                {work.data.title}
                                             </div>
                                             <div class="work_description">
-                                                {content.data.description}
+                                                {work.data.description}
                                             </div>
                                         </div>
                                     </div>
