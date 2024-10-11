@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "build": "astro build",
+    "build:ignore-errors": "npm run build || true"
+  }
+}
