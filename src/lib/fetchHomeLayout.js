@@ -11,6 +11,6 @@ export default async function fetchHomeLayout() {
     let query = WixClient.items.queryDataItems({
         dataCollectionId: 'HomePage',
     });
-    const works = await query.find();
-    return works.items;
+    const home = await query.find();
+    return home.items;
 }

@@ -10,8 +10,8 @@ import ThemeToggle from "../layouts/ThemeToggle.astro";
 import BrandTag from "../components/BrandTag.astro";
 import PageLoader from "../components/PageLoader.astro";
 // CMS added
-import fetchworks from "../lib/fetchWorks";
-const works = await fetchworks();
+import fetchWorksItems from "../lib/fetchWorksItems";
+const works = await fetchWorksItems();
 
 
 import fetchHomeLayout from "../lib/fetchHomeLayout";

@@ -7,7 +7,7 @@ const WixClient = createClient({
     }),
 });
 
-export default async function fetchWorks() {
+export default async function fetchWorksItems() {
     let query = WixClient.items.queryDataItems({
         dataCollectionId: 'Import982',
     });

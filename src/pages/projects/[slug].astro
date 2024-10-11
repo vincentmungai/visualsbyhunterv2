@@ -1,9 +1,9 @@
 ---
-import fetchworks from "../../lib/fetchWorks";
-const works = await fetchworks();
+import fetchWorksItems from "../../lib/fetchWorksItems";
+const works = await fetchWorksItems();
 export const prerender = true;
 export async function getStaticPaths() {
-    const works = await fetchworks();
+    const works = await fetchWorksItems();
     return works.map((work) => ({
         params: {
             slug: work.data.slug,
