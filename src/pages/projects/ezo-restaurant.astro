@@ -9,7 +9,7 @@ import "../../styles/projectStyles.css";
 import fetchworks from "../../lib/fetchWorks";
 const works = await fetchworks();
 
-const title = works[0].data.slug;
+const title = works[1].data.slug;
 
 ---
 
@@ -39,13 +39,13 @@ const title = works[0].data.slug;
 
 <div class="container">
     <div class="page-cta-wrapper" style="position: relative; opacity: 0;">
-        <img src={media.getImageUrl(works[0].data.featuredImage).url} alt="Cover image" style="height: 100%; width: 100%; object-fit: cover;" class="cover-image">
+        <img src={media.getImageUrl(works[1].data.featuredImage).url} alt="Cover image" style="height: 100%; width: 100%; object-fit: cover;" class="cover-image">
 
         <!-- Overlay content -->
         <div class="page-cta"
              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; z-index: 1;">
             <div class="project-name" style="color: white; font-size: 3rem; text-align: center;">
-                { works[0].data.heroText }
+                { works[1].data.heroText }
             </div>
             <div class="cta-button-wrapper" style="margin-top: 20px; text-align: center;">
                 <button onclick="window.location.href='#gallery'" class="cta-button">
@@ -60,7 +60,7 @@ const title = works[0].data.slug;
     <h1>Overview</h1>
     <div class="spacer-block" style="height: 1em"></div>
     <div class="description-text">
-        <div set:html={ works[0].data.projectOverview } />
+        <div set:html={ works[1].data.projectOverview } />
     </div>
     <div class="container">
         <div class="title-wrapper" id="gallery">
@@ -70,13 +70,13 @@ const title = works[0].data.slug;
         <div class="gallery-wrapper">
             <div class="img-wrapper">
                 <div class="gallery-item">
-                    <img src={media.getImageUrl(works[0].data.mediagallery[0].src).url} alt="captured by hunter" class="open"/>
+                    <img src={media.getImageUrl(works[1].data.mediagallery[1].src).url} alt="captured by hunter" class="open"/>
                     <div class="overlay open">
                         <ExpandIcon class="expand-icon"/>
                     </div>
                 </div>
                 <dialog class="modal">
-                    <img src={media.getImageUrl(works[0].data.mediagallery[0].src).url}
+                    <img src={media.getImageUrl(works[1].data.mediagallery[1].src).url}
                          alt=""
                          class="modal-img open" loading="lazy">
                 </dialog>
@@ -84,13 +84,13 @@ const title = works[0].data.slug;
 
             <div class="img-wrapper">
                 <div class="gallery-item">
-                    <img src={media.getImageUrl(works[0].data.mediagallery[1].src).url} alt="captured by hunter" class="open"/>
+                    <img src={media.getImageUrl(works[1].data.mediagallery[1].src).url} alt="captured by hunter" class="open"/>
                     <div class="overlay open">
                         <ExpandIcon class="expand-icon"/>
                     </div>
                 </div>
                 <dialog class="modal">
-                    <img src={media.getImageUrl(works[0].data.mediagallery[1].src).url}
+                    <img src={media.getImageUrl(works[1].data.mediagallery[1].src).url}
                          alt=""
                          class="modal-img open" loading="lazy">
                 </dialog>
@@ -98,13 +98,13 @@ const title = works[0].data.slug;
 
             <div class="img-wrapper">
                 <div class="gallery-item">
-                    <img src={media.getImageUrl(works[0].data.mediagallery[2].src).url} alt="captured by hunter" class="open"/>
+                    <img src={media.getImageUrl(works[1].data.mediagallery[2].src).url} alt="captured by hunter" class="open"/>
                     <div class="overlay open">
                         <ExpandIcon class="expand-icon"/>
                     </div>
                 </div>
                 <dialog class="modal">
-                    <img src={media.getImageUrl(works[0].data.mediagallery[2].src).url}
+                    <img src={media.getImageUrl(works[1].data.mediagallery[2].src).url}
                          alt=""
                          class="modal-img open" loading="lazy">
                 </dialog>
@@ -112,13 +112,13 @@ const title = works[0].data.slug;
 
             <div class="img-wrapper">
                 <div class="gallery-item">
-                    <img src={media.getImageUrl(works[0].data.mediagallery[3].src).url} alt="captured by hunter" class="open"/>
+                    <img src={media.getImageUrl(works[1].data.mediagallery[3].src).url} alt="captured by hunter" class="open"/>
                     <div class="overlay open">
                         <ExpandIcon class="expand-icon"/>
                     </div>
                 </div>
                 <dialog class="modal">
-                    <img src={media.getImageUrl(works[0].data.mediagallery[3].src).url}
+                    <img src={media.getImageUrl(works[1].data.mediagallery[3].src).url}
                          alt=""
                          class="modal-img open" loading="lazy">
                 </dialog>
@@ -126,13 +126,13 @@ const title = works[0].data.slug;
 
             <div class="img-wrapper">
                 <div class="gallery-item">
-                    <img src={media.getImageUrl(works[0].data.mediagallery[4].src).url} alt="captured by hunter" class="open"/>
+                    <img src={media.getImageUrl(works[1].data.mediagallery[4].src).url} alt="captured by hunter" class="open"/>
                     <div class="overlay open">
                         <ExpandIcon class="expand-icon"/>
                     </div>
                 </div>
                 <dialog class="modal">
-                    <img src={media.getImageUrl(works[0].data.mediagallery[4].src).url}
+                    <img src={media.getImageUrl(works[1].data.mediagallery[4].src).url}
                          alt=""
                          class="modal-img open" loading="lazy">
                 </dialog>
@@ -140,13 +140,13 @@ const title = works[0].data.slug;
 
             <div class="img-wrapper">
                 <div class="gallery-item">
-                    <img src={media.getImageUrl(works[0].data.mediagallery[5].src).url} alt="captured by hunter" class="open"/>
+                    <img src={media.getImageUrl(works[1].data.mediagallery[5].src).url} alt="captured by hunter" class="open"/>
                     <div class="overlay open">
                         <ExpandIcon class="expand-icon"/>
                     </div>
                 </div>
                 <dialog class="modal">
-                    <img src={media.getImageUrl(works[0].data.mediagallery[5].src).url}
+                    <img src={media.getImageUrl(works[1].data.mediagallery[5].src).url}
                          alt=""
                          class="modal-img open" loading="lazy">
                 </dialog>
@@ -154,13 +154,13 @@ const title = works[0].data.slug;
 
             <div class="img-wrapper">
                 <div class="gallery-item">
-                    <img src={media.getImageUrl(works[0].data.mediagallery[6].src).url} alt="captured by hunter" class="open"/>
+                    <img src={media.getImageUrl(works[1].data.mediagallery[6].src).url} alt="captured by hunter" class="open"/>
                     <div class="overlay open">
                         <ExpandIcon class="expand-icon"/>
                     </div>
                 </div>
                 <dialog class="modal">
-                    <img src={media.getImageUrl(works[0].data.mediagallery[6].src).url}
+                    <img src={media.getImageUrl(works[1].data.mediagallery[6].src).url}
                          alt=""
                          class="modal-img open" loading="lazy">
                 </dialog>
@@ -168,13 +168,13 @@ const title = works[0].data.slug;
 
             <div class="img-wrapper">
                 <div class="gallery-item">
-                    <img src={media.getImageUrl(works[0].data.mediagallery[7].src).url} alt="captured by hunter" class="open"/>
+                    <img src={media.getImageUrl(works[1].data.mediagallery[7].src).url} alt="captured by hunter" class="open"/>
                     <div class="overlay open">
                         <ExpandIcon class="expand-icon"/>
                     </div>
                 </div>
                 <dialog class="modal">
-                    <img src={media.getImageUrl(works[0].data.mediagallery[7].src).url}
+                    <img src={media.getImageUrl(works[1].data.mediagallery[7].src).url}
                          alt=""
                          class="modal-img open" loading="lazy">
                 </dialog>
@@ -182,13 +182,13 @@ const title = works[0].data.slug;
 
             <div class="img-wrapper">
                 <div class="gallery-item">
-                    <img src={media.getImageUrl(works[0].data.mediagallery[8].src).url} alt="captured by hunter" class="open"/>
+                    <img src={media.getImageUrl(works[1].data.mediagallery[8].src).url} alt="captured by hunter" class="open"/>
                     <div class="overlay open">
                         <ExpandIcon class="expand-icon"/>
                     </div>
                 </div>
                 <dialog class="modal">
-                    <img src={media.getImageUrl(works[0].data.mediagallery[8].src).url}
+                    <img src={media.getImageUrl(works[1].data.mediagallery[8].src).url}
                          alt=""
                          class="modal-img open" loading="lazy">
                 </dialog>
