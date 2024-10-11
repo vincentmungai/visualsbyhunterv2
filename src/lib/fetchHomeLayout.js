@@ -1,7 +1,5 @@
 import {createClient, OAuthStrategy} from "@wix/sdk";
 import { items } from "@wix/data";
-import { media } from "@wix/sdk";
-
 const WixClient = createClient({
     modules: { items },
     auth: OAuthStrategy ({
