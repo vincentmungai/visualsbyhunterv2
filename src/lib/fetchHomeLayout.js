@@ -9,9 +9,9 @@ const WixClient = createClient({
     }),
 });
 
-export default async function fetchWorks() {
+export default async function fetchHomeLayout() {
     let query = WixClient.items.queryDataItems({
-        dataCollectionId: 'Import982',
+        dataCollectionId: 'HomePage',
     });
     const works = await query.find();
     return works.items;

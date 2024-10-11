@@ -10,6 +10,15 @@ import ThemeToggle from "../layouts/ThemeToggle.astro";
 import BrandTag from "../components/BrandTag.astro";
 import {Image} from "astro:assets";
 import PageLoader from "../components/PageLoader.astro";
+// CMS added
+import fetchworks from "../lib/fetchWorks";
+const works = await fetchworks();
+
+
+import fetchHomeLayout from "../lib/fetchHomeLayout";
+const homeLayout = await fetchHomeLayout();
+console.log(homeLayout[0].data.image);
+
 ---
 
 <!doctype html>
@@ -233,14 +242,14 @@ import PageLoader from "../components/PageLoader.astro";
 
     <div class="container">
         <div class="page-cta-wrapper" style="position: relative; opacity: 0;">
-            <img src="https://dyvkdbmmzvclydrmokpq.supabase.co/storage/v1/object/public/isles-and-wedding-vows/29.webp?t=2024-10-08T09%3A40%3A25.766Z"
+            <img src={homeLayout[0].data.image}
                  alt="Cover image" style="height: 100%; width: 100%; object-fit: cover;" class="cover-image">
 
             <!-- Overlay content -->
             <div class="page-cta"
                  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; z-index: 1;">
                 <div class="project-name" style="color: white; font-size: 3rem; text-align: center;">
-                    Life's Stories Told Effortlessly
+                    {homeLayout[0].data.largeText}
                 </div>
                 <div class="cta-button-wrapper" style="margin-top: 20px; text-align: center; display: flex; gap: 4em;">
                     <button onclick="window.location.href='#gallery'" class="cta-button-primary animated-button">
@@ -308,32 +317,28 @@ import PageLoader from "../components/PageLoader.astro";
                 <!-- Hero card -->
 
                 {
-                    allWorkCards.map((content) => (
+                    works.map((content) => (
 
                             <div
                                     item-style="tall"
                                     role="listitem"
                                     class="work_item w-dyn-item "
-                                    onclick={`window.location.href='${content.frontmatter.route}'`}
+                                    onclick={`window.location.href='/projects/${content.data.slug}'`}
                             >
-                                <Image
-                                        src={content.frontmatter.image}
+                                <img
+                                        src={content.data.url}
                                         alt="Photos by Hunter"
-                                        width={300}
-                                        height={600}
                                         class="work_image hero-fade"
-                                        widths={[240, 540, 720, content.frontmatter.image.width]}
-                                        sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${content.frontmatter.image.width}px`}
                                 />
-                                <a href={content.frontmatter.route}>
+                                <a href={`/projects/${content.data.slug}`}>
                                     <div class="work_content-wrap">
                                         <div class="work_date-wrap"/>
                                         <div class="work_title-wrap">
                                             <div class="work_title">
-                                                {content.frontmatter.title}
+                                                {content.data.title}
                                             </div>
                                             <div class="work_description">
-                                                {content.frontmatter.description}
+                                                {content.data.description}
                                             </div>
                                         </div>
                                     </div>
