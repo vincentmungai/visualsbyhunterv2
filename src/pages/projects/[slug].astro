@@ -1,7 +1,7 @@
 ---
 import fetchWorksItems from "../../lib/fetchWorksItems";
 const works = await fetchWorksItems();
-export const prerender = true;
+export const    prerender = true;
 export async function getStaticPaths() {
     const works = await fetchWorksItems();
     return works.map((work) => ({
@@ -206,8 +206,8 @@ import "../../styles/projectStyles.css"
 <FooterComponent/>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer is:inline></script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer is:inline></script>
-<script src="/src/script/lenisScroll.js" defer is:inline></script>
-<script src="../../script/cta-Animation.js" is:inline>
+<script src="/src/script/lenisScroll.js" defer></script>
+<script src="../../script/cta-Animation.js">
 </script>
 
 </div></body>
