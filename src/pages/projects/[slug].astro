@@ -1,25 +1,37 @@
 ---
 import fetchworks from "../../lib/fetchWorks";
-export const prerender = true;
-export async function getStaticPaths() {
-    const works = await fetchworks();
-    return works.map((work) => ({
-        params: {
-            slug: work.data.slug,
-        },
-        props: {
-            workData: work.data
-        }
-    }))
-}
-const {workData} = Astro.props;
-import {media} from "@wix/sdk";
+import { media } from "@wix/sdk";
 import NavBar from "../../components/NavBar.astro";
 import ThemeToggle from "../../layouts/ThemeToggle.astro";
 import FooterComponent from "../../components/FooterComponent.astro";
 import ExpandIcon from "../../components/svgs/ExpandIcon.astro";
-import "../../styles/projectStyles.css"
+import "../../styles/projectStyles.css";
+
+// Ensure the page is prerendered at build time for better performance and SEO
+export const prerender = true;
+
+// Static paths generation for each work item based on slug
+export async function getStaticPaths() {
+    try {
+        const works = await fetchworks();
+        return works.map((work) => ({
+            params: {
+                slug: work.data.slug,
+            },
+            props: {
+                workData: work.data
+            }
+        }));
+    } catch (error) {
+        console.error("Error fetching works:", error);
+        return [];
+    }
+}
+
+const { workData } = Astro.props;
+
 ---
+
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
@@ -45,7 +57,7 @@ import "../../styles/projectStyles.css"
 
 <div class="container">
     <div class="page-cta-wrapper" style="position: relative; opacity: 0;">
-        <img src={media.getImageUrl(workData.featuredImage).url} alt="Cover image" style="height: 100%; width: 100%; object-fit: cover;" class="cover-image">
+        <img src={workData?.featuredImage ? media.getImageUrl(workData.featuredImage).url : ''} alt="Cover image" style="height: 100%; width: 100%; object-fit: cover;" class="cover-image">
 
         <!-- Overlay content -->
         <div class="page-cta"
