@@ -1,6 +1,14 @@
 {
-  "scripts": {
-    "build": "astro build",
-    "build:ignore-errors": "npm run build || true"
-  }
+  "version": 2,
+  "build": {
+    "env": {
+      "WIX_CLIENT_ID": "3c5b9ddb-5f8c-4936-8de8-b2e84636118e" 
+    }
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ]
 }
