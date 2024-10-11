@@ -3,12 +3,9 @@ import "../styles/index.css";
 import FooterLayout from "../components/FooterComponent.astro";
 import "../styles/WorkGrid.css";
 import "../styles/page-load.css";
-const allWorkCards = await Astro.glob("../content/WorkGrid/*.md");
-import PricingCards from "../components/PricingCards.astro";
 import NavBar from "../components/NavBar.astro";
 import ThemeToggle from "../layouts/ThemeToggle.astro";
 import BrandTag from "../components/BrandTag.astro";
-import PageLoader from "../components/PageLoader.astro";
 // CMS added
 import fetchWorksItems from "../lib/fetchWorksItems";
 const works = await fetchWorksItems();
@@ -234,7 +231,7 @@ console.log(homeLayout[0].data.image);
                 .lenis.lenis-smooth iframe {
                     pointer-events: none;
                 }
-
+            }
         </style>
     </div>
 
@@ -466,7 +463,6 @@ console.log(homeLayout[0].data.image);
         }
     }
 </style>
-</div>
 
 <div class="container" id="about">
     <h1 id="projects" style="text-align: center">About</h1>
