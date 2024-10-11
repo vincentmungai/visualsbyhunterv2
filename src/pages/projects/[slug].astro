@@ -13,16 +13,16 @@ export async function getStaticPaths() {
         }
     }))
 }
+console.log(works);
 const {workData} = Astro.props;
-import {media} from "@wix/sdk";/*
-console.log(media.getImageUrl(workData.featuredImage).url);
-console.log(media.getImageUrl(workData.mediagallery[1].src).url);*/
+import {media} from "@wix/sdk";
 
 import NavBar from "../../components/NavBar.astro";
 import ThemeToggle from "../../layouts/ThemeToggle.astro";
 import FooterComponent from "../../components/FooterComponent.astro";
 import ExpandIcon from "../../components/svgs/ExpandIcon.astro";
 import "../../styles/projectStyles.css"
+
 ---
 <html lang="en">
 <head>
@@ -39,9 +39,6 @@ import "../../styles/projectStyles.css"
             href="/assets/icons/hunter-logo.svg"
     />
 
-    <style>
-
-    </style>
 </head>
 <NavBar/>
 <ThemeToggle/>
@@ -205,17 +202,14 @@ import "../../styles/projectStyles.css"
         </div>
 
     </div>
-    <script defer>
-
-    </script>
 </div>
 <FooterComponent/>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
-<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
-<script src="/src/script/lenisScroll.js" defer></script>
-<script src="../../script/cta-Animation.js">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer is:inline></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer is:inline></script>
+<script src="/src/script/lenisScroll.js" defer is:inline></script>
+<script src="../../script/cta-Animation.js" is:inline>
 </script>
 
-</body>
+</div></body>
 
 </html>

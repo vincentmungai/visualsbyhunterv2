@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
 const openModal = document.querySelectorAll('.open');
 
 // Loop over the images and add an event listener to each one
-openModal.forEach((image, index) => {
+openModal.forEach((image) => {
     // Find the respective modal for each image (since modals and images are paired within each img-wrapper)
     const modal = image.closest('.img-wrapper').querySelector('.modal');
     const closeBtn = modal.querySelector('.btn-close'); // Find the close button inside the modal
