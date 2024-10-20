@@ -1,15 +1,14 @@
 import { useSanityClient, groq } from 'astro-sanity';
 
-// Function to fetch the first blog post (home)
-export async function getFirstBlogPost() {
-    const query = groq`*[_type == "home"]`;
-    const home = await useSanityClient().fetch(query);
-    return home;
-}
-
 // Function to fetch the projects
 export async function getAllWorks() {
     const query = groq`*[_type == "projects"]`;
-    const works = await useSanityClient().fetch(query);
-    return works;
+    try {
+        const works = await useSanityClient().fetch(query);
+        console.log('Fetched Project Info:', works); // Log the fetched data for debugging
+        return works;
+    } catch (error) {
+        console.error('Error fetching works:', error); // Log any errors
+        return "Error fetching items"; // Return an empty array in case of an error
+    }
 }

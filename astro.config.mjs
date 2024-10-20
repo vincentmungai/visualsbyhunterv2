@@ -1,7 +1,12 @@
 import { defineConfig } from 'astro/config';
-import vercel from '@astrojs/vercel/serverless';
+import sanity from 'astro-sanity';
 
 export default defineConfig({
-    output: 'hybrid',  // You're using hybrid mode, which allows a mix of static and server-rendered pages.
-    adapter: vercel(), // Use the Vercel adapter for serverless deployments.
+
+  integrations: [sanity({
+    projectId: 'vgjuka9j',
+    dataset: 'production',
+    apiVersion: 'v2021-03-25',
+    useCdn: true,
+  })]
 });
